@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       firstName: { type: DataTypes.STRING(50), allowNull: false },
       lastName: { type: DataTypes.STRING(50), allowNull: false },
       userName: { type: DataTypes.STRING(50), allowNull: false, unique: true },
-      hashedPassword: { type: DataTypes.BINARY, allowNull: false },
+      hashedPassword: { type: DataTypes.STRING.BINARY, allowNull: false },
     },
     {}
   );

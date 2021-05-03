@@ -1,0 +1,24 @@
+extends layout
+block content 
+  form(action="/user/signup" method="post")
+    div(class="input-container")
+      label(for="userName") Username:
+      input(type="text" name="userName" id="userName")
+    div(class="input-container")
+      label(for="email") Email: 
+      input(type="email" name="email" id="email")
+    div(class="input-container")
+      label(for="firstName") First Name:
+      input(type="text" name="firstName" id="firstName")
+    div(class="input-container")
+      label(for="lastName") Last Name:
+      input(type="text" name="lastName" id="lastName")
+    div(class="input-container")
+      label(for="password") Password:
+      input(type="password" name="password" id="password")
+    div(class="input-container")
+      label(for="confirmPassword") Confirm Password:
+      input(type="password" name="confirmPassword" id="confirmPassword")
+    div(class="submit-div")
+      button(class="submit-button" type="submit") Submit
+    input(type="hidden" name="_csrf" value=csrfToken)
