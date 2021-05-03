@@ -8,8 +8,9 @@ html
     h1(class="title")= title
     if authenticated
       h2 Welcome
-      button(class='logout') Logout
+      form(action='/users/logout' method='post')
+        button(type='submit' class='logout') Logout
     else
-      button(class='login') Login
-      button(class='register') Register
+      button(class='login'): a(href='/users/login') Login
+      button(class='register'): a(href='/users/signup') Register
     block content

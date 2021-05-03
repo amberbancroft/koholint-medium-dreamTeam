@@ -50,6 +50,15 @@ const userValidators = [
     }),
 ];
 
+const loginvalidators = [
+  check("userName")
+    .exists({ checkFalsy: true })
+    .withMessage("Username cannot be empty"),
+  check("password")
+    .exists({ checkFalsy: true })
+    .withMessage("Password cannot be empty")
+]
+
 /* GET users listing. */
 router.get(
   "/signup",
@@ -97,6 +106,44 @@ router.post(
     }
   })
 );
+
+router.get('/login', csrfProtection, (req,res) => {
+  res.render('user-login', {
+    title: "Login",
+    csrfToken: req.csrfToken(),
+  })
+})
+
+router.post("/login", csrfProtection, loginvalidators, asyncHandler(async(req, res) => {
+  const {userName, password} = req.body;
+  let errors = [];
+  const validatorErrors = validationResult(req);
+  if (validatorErrors.isEmpty()) {
+    const user = await db.User.findOne({where: {userName}});
+    if (user !== null) {
+      const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+      if (passwordMatch) {
+        loginUser(req,res,user);
+        return res.redirect('/');
+      }
+    } 
+    errors.push("Invalid password, please try again.")
+  } else {
+    errors = validatorErrors.array().map((error) => error.msg);
+  }
+  res.render('user-login', {
+    title: "Login",
+    errors,
+    csrfToken: req.csrfToken(),
+  });
+}));
+
+
+
+router.post('/logout', (req, res) => {
+  logoutUser(req,res);
+  res.redirect('/');
+});
 
 //Exports
 module.exports = router;
