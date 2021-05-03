@@ -25,12 +25,12 @@ const userValidators = [
   check("firstName")
     .exists({checkFalsy: true})
     .withMessage("First Name cannot be empty")
-    .length({max: 50})
+    .isLength({max: 50})
     .withMessage("First Name must not be more than 50 characters long"),
   check("lastName")
     .exists({checkFalsy: true})
     .withMessage("Last Name must cannot be empty")
-    .length({max: 50})
+    .isLength({max: 50})
     .withMessage("Last Name must not be more then 50 characters long"),
   check("password")
     .exists({checkFalsy: true})
@@ -54,7 +54,7 @@ router.get(
   asyncHandler(async (req, res, next) => {
     res.render("user-signup", {
       title: "Sign Up",
-      crsfToken: req.csrfToken()
+      csrfToken: req.csrfToken()
     });
   })
 );
@@ -72,7 +72,26 @@ router.post(
       firstName,
       lastName,
       hashedPassword
-    })
+    });
+
+    const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()){
+      await newUser.save();
+      //add session login
+      res.redirect('/');
+    } else {
+      const errors = validatorErrors.array().map((error)=> error.msg);
+      res.render('user-signup', {
+        title: 'Sign Up',
+        csrfToken: req.csrfToken(),
+        errors,
+        userName: userName,
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+      });
+    }
   })
 );
 
