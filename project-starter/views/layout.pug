@@ -6,4 +6,10 @@ html
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body
     h1(class="title")= title
+    if authenticated
+      h2 Welcome
+      button(class='logout') Logout
+    else
+      button(class='login') Login
+      button(class='register') Register
     block content
