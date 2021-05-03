@@ -1,5 +1,7 @@
 extends layout
+include utils.pug
 block content 
+  +validationErrorSummary(errors)
   form(action="/user/signup" method="post")
     div(class="input-container")
       label(for="userName") Username:
