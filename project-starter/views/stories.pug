@@ -1,0 +1,8 @@
+extends layout 
+block content 
+    ul
+        each story in stories
+            div(class='stories-display')
+                li=story.title
+                li=story.content
+                li=story.createdAt
