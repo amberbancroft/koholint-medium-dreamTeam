@@ -7,17 +7,17 @@ block content
         h1 User Login
         div(class="form-container")
             +validationErrorSummary(errors)
-            form(action='/users/login' method='post')
+            form(class="login-form" action='/users/login' method='post')
                 h2 Welcome back.
                 input(type="hidden" name="_csrf" value=csrfToken)
 
                 div(class='input-container')
-                    label(for='userName') Username:
-                    input(type='text' name='userName' id='userName')
+                    label(class="login-label" for='userName') Username:
+                    input(class="login-input" type='text' name='userName' id='userName')
 
                 div(class='input-container')
-                    label(for='password') Password:
-                    input(type='password' name='password' id='password')
+                    label(class="login-label" for='password') Password:
+                    input(class="login-input" type='password' name='password' id='password')
 
                 div(class="submit-div-login")
                     button(class="btn" type="submit") Login

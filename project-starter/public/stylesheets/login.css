@@ -18,7 +18,7 @@
   border: black solid 2px;
 }
 
-form {
+.login-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,7 +26,7 @@ form {
   width: 100%;
 }
 
-label {
+.input-label {
   display: block;
 }
 
@@ -35,7 +35,7 @@ label {
   width: 80%;
 }
 
-input {
+.login-input {
   height: 30px;
   width: 100%;
   border-radius: 5px;

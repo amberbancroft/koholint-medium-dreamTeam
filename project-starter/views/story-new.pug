@@ -5,9 +5,9 @@ block content
     div(class="form-div")
         form(action='/story-new' method='post')
             input(type="hidden" name="_csrf" value=csrfToken)
-            div(class='story-container1')
+            div(class='story-container')
                 input(type='text' name='title' class="story-title" placeholder="Name Your Story...")
             div(class='story-container')
                 textarea(name='content' class='story-text' placeholder="Tell Us Your Story...")
             div(class='submit-div')
-                button(class="submit-button" type="submit") Post Your Story
+                button(class="btn" type="submit") Post Your Story

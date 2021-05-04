@@ -1,28 +1,28 @@
-.form-div{
-    display: flex;
-    justify-content: center;
-    width: 100vw;
+.form-div {
+  display: flex;
+  margin-top: 100px;
+  justify-content: center;
+  width: 100vw;
 }
-
-.story-container1{
-    position: relative;
-    right: 315px;
+.story-container {
+  width: 80vw;
 }
 
 .story-text {
-    font-size: 15px;
-    position: relative;
-    border: none;
-    outline: none;
-    resize: none;
-    width: 800px;
-    height: 500px;
-    background-color:  #feffde;
+  font-size: 15px;
+  margin-top: 30px;
+  width: 100%;
+  /* position: relative; */
+  border: none;
+  outline: none;
+  resize: none;
+  height: 500px;
+  background-color: #feffde;
 }
 
 .story-title {
-    font-size: 24px;
-    border: none;
-    background-color:  #feffde;
-    outline: none;
+  font-size: 24px;
+  border: none;
+  background-color: #feffde;
+  outline: none;
 }
