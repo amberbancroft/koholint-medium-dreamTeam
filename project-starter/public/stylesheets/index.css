@@ -1,3 +1,5 @@
-h1 {
-    color: #555555;
-}
+/* Imports */
+@import url("reset.css");
+@import url("global.css");
+@import url("login.css");
+@import url("home.css");

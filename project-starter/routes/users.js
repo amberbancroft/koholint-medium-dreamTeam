@@ -65,7 +65,7 @@ router.get(
   csrfProtection,
   asyncHandler(async (req, res, next) => {
     res.render("user-signup", {
-      title: "Sign Up",
+      // title: "Sign Up",
       csrfToken: req.csrfToken(),
     });
   })
@@ -95,7 +95,7 @@ router.post(
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
       res.render("user-signup", {
-        title: "Sign Up",
+        // title: "Sign Up",
         csrfToken: req.csrfToken(),
         errors,
         userName: userName,
@@ -109,7 +109,7 @@ router.post(
 
 router.get('/login', csrfProtection, (req,res) => {
   res.render('user-login', {
-    title: "Login",
+    // title: "Login",
     csrfToken: req.csrfToken(),
   })
 })
@@ -132,7 +132,7 @@ router.post("/login", csrfProtection, loginvalidators, asyncHandler(async(req, r
     errors = validatorErrors.array().map((error) => error.msg);
   }
   res.render('user-login', {
-    title: "Login",
+    // title: "Login",
     errors,
     csrfToken: req.csrfToken(),
   });

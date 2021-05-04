@@ -8,4 +8,10 @@ append head
 
 block content
 
-  p Welcome to your Project Skeleton
+  if authenticated
+      h2 Welcome
+      form(action='/users/logout' method='post')
+        button(class='btn' type='submit') Logout
+  else
+      button(class='btn'): a(href='/users/login') Login
+      button(class='btn'): a(href='/users/signup') Sign Up
