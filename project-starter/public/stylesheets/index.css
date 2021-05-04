@@ -1,4 +1,5 @@
 /* Imports */
-@import url('reset.css');
-@import url('global.css');
+@import url("reset.css");
+@import url("global.css");
 @import url("login.css");
+@import url("home.css");
