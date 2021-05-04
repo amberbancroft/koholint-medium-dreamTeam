@@ -124,7 +124,8 @@ router.post("/login", csrfProtection, loginvalidators, asyncHandler(async(req, r
       const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
       if (passwordMatch) {
         loginUser(req,res,user);
-        return res.redirect('/');
+        res.redirect('/');
+        return;
       }
     } 
     errors.push("Invalid password, please try again.")
