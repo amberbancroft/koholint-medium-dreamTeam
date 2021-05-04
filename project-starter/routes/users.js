@@ -91,7 +91,7 @@ router.post(
     if (validatorErrors.isEmpty()) {
       await newUser.save();
       loginUser(req, res, newUser); //add session login
-      res.redirect("/");
+      req.session.save(() => res.redirect("/")) //res.redirect("/");
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
       res.render("user-signup", {
@@ -124,7 +124,7 @@ router.post("/login", csrfProtection, loginvalidators, asyncHandler(async(req, r
       const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
       if (passwordMatch) {
         loginUser(req,res,user);
-        return res.redirect('/');
+        return req.session.save(() => res.redirect("/")) //return res.redirect('/');
       }
     } 
     errors.push("Invalid password, please try again.")
@@ -142,7 +142,7 @@ router.post("/login", csrfProtection, loginvalidators, asyncHandler(async(req, r
 
 router.post('/logout', (req, res) => {
   logoutUser(req,res);
-  res.redirect('/');
+  req.session.save(() => res.redirect("/")) //res.redirect('/');
 });
 
 //Exports
