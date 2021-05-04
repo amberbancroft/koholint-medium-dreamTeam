@@ -3,14 +3,10 @@ html
   head
       block head
         title= title
-        link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel="stylesheet", href="/stylesheets/index.css")
   body
-    h1(class="title")= title
-    if authenticated
-      h2 Welcome
-      form(action='/users/logout' method='post')
-        button(type='submit' class='logout') Logout
-    else
-      button(class='login'): a(href='/users/login') Login
-      button(class='register'): a(href='/users/signup') Register
+  
+    if title 
+      h1(class="title")= title
+
     block content
