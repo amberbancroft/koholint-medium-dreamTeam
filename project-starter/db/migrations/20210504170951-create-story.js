@@ -10,11 +10,13 @@ module.exports = {
       },
       title: {
         allowNull: false,
-        type: Sequelize.STRING(50)
+        type: Sequelize.STRING(50),
+        unique: true
       },
       content: {
         allowNull: false,
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        unique: true
       },
       userId: {
         allowNull: false,

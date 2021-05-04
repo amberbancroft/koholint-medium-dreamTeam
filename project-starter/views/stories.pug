@@ -1,5 +1,6 @@
-extends layout 
-block content 
+extends layout
+block content
+    button(class='new-story-button'): a(href='/story-new') Create New Story
     ul
         each story in stories
             div(class='stories-display')

@@ -7,12 +7,24 @@ const { csrfProtection, asyncHandler } = require("./utils");
 
 
 const storyValidator =[
-    check('content-title')
+    check('title')
         .exists({checkFalsy: true})
-        .withMessage("Title cannot be empty"),
+        .withMessage("Title cannot be empty")
+        .custom((value)=>{
+            return db.Story.findOne({ where: {title:value}}).then((title)=>{
+                if (title)
+                    return Promise.reject("This title already exists");
+            })
+        }),
     check('content')
         .exists({checkFalsy: true})
         .withMessage("Story cannot be empty")
+        .custom((value)=>{
+            return db.Story.findOne({ where: {content:value}}).then((story)=>{
+                if (story)
+                    return Promise.reject("This story already exists");
+            })
+        })
 ]
 
 
@@ -29,7 +41,7 @@ router.post('/', csrfProtection, storyValidator, asyncHandler(async(req,res) => 
     const userId = req.session.auth.userId
     const newStory = await db.Story.build({
         title,
-        content, 
+        content,
         userId,
     });
 
