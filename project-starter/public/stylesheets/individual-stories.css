@@ -12,3 +12,8 @@
     margin-top: 4%;
     width: 70%;
 }
+
+#paragraph-content{
+    line-height: 20px;
+    white-space: pre-wrap;
+}
