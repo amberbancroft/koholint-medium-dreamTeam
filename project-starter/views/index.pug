@@ -6,3 +6,25 @@ append head
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
+block content
+  if authenticated
+      h2 Welcome
+      form(action='/users/logout' method='post')
+        button(class='btn' type='submit') Logout
+  else
+      button(class='btn'): a(href='/users/login') Login
+      button(class='btn'): a(href='/users/signup') Sign Up
+
+  div(class="landing-header-container")
+    div(class="landing-header-content")
+      div(class="landing-header-text")
+        h1 Where good ideas find you
+        p Read and share new perspectives on just about any to hobby. Everyone's welcome.
+      div(class="landing-header-img-div")
+      button(class="landing-button"): a(href="/users/signup") Get Started
+  div(class="landing-top-stories")
+    each story in topStories 
+      div(class="landing-top-story")
+        p(class="landing-top-story-title")= story.title
+        p(class="landing-top-story-timestamp")= story.createdAt
+  //- TODO: render "otherStores" here; edit story title p tag to redirect to specific story
