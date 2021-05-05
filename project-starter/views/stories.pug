@@ -5,7 +5,8 @@ block content
         button(class='btn'): a(href='/story-new') Create New Story
     div(class="story-items")
         each story in stories
-            div(class='items')
-                ul(id="list")
-                    li=story.title
-                    li(class="date") #{story.createdAt}
+            a(href=`/${story.id}`)
+                div(class='items')
+                    ul(id="list")
+                        li=story.title
+                        li(class="date") #{story.createdAt}
