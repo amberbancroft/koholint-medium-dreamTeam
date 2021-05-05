@@ -1,6 +1,6 @@
 //Imports
 const express = require("express");
-const {asyncHandler} = require("./utils");
+const { csrfProtection, asyncHandler} = require("./utils");
 const db = require("../db/models");
 const router = express.Router();
 
@@ -20,6 +20,19 @@ router.get("/", asyncHandler(async (req, res, next) => {
     topStories: firstSixStories,
     otherStories: lastFourStories
   });
+}));
+
+router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
+  const id = req.params.id
+  const story = await db.Story.findOne(
+      {where: {id}}
+  );
+  const user = await db.User.findOne( {where: story.userId});
+  res.render('individual-stories', {
+    csrfToken: req.csrfToken(),
+    story,
+    user,
+  })
 }));
 
 //Exports
