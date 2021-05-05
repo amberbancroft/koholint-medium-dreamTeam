@@ -1,0 +1,25 @@
+
+.header-nav__container {
+    background-color: #52734d;
+    display: flex;
+    justify-content: space-between;
+}
+
+#whitespace {
+    width: 500px;
+}
+
+#center {
+    display: flex;
+    align-content: center;
+    margin: 10px 0px
+}
+
+#buttons {
+    margin: 7px 0px
+}
+
+.advocadi {
+    padding-top: 5px;
+    font-size: 25px;
+}

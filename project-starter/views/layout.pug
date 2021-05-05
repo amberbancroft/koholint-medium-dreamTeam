@@ -4,10 +4,34 @@ html
       block head
         title= title
         link(rel="stylesheet", href="/stylesheets/index.css")
+        link(type='image',href="../image/icons8-avocado-48.png")
   body
-    nav 
-      h1 Avocati
-    if title 
-      h2(class="title")= title
+    if authenticated 
+      div(class="header-nav__container")
+        span(class="header-nav__group")
+          h2(class='advocadi') Advocadi 
+          div(class="home")
+          h2(class="title")= title 
+        span(class="header-nav__group")
+          div(id='whitespace')
+        span(id='buttons')
+          button(class='btn'): a(href='/users/logout') Logout
+          button(class='btn'): a(href='/story-new') Story
+
+    else
+      div(class="header-nav__container")
+        span(class="header-nav__group")
+          h2(class='advocadi') Advocadi 
+          div(class="home")
+          h2(class="title")= title 
+        span(class="header-nav__group")
+          div(id='whitespace')
+        //- span(id='center')  
+        //-   input(type="text")
+        //-   input(type="submit")
+        span(id='buttons')
+          button(type='submit', class='btn'): a(href='/users/login') Login
+          button(class='btn'): a(href='/users/signup') Sign Up
+          button(class='btn'): a(href='/users/:id') User Profile
 
     block content
