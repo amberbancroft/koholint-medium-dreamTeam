@@ -6,12 +6,3 @@ append head
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
-block content
-
-  if authenticated
-      h2 Welcome
-      form(action='/users/logout' method='post')
-        button(class='btn' type='submit') Logout
-  else
-      button(class='btn'): a(href='/users/login') Login
-      button(class='btn'): a(href='/users/signup') Sign Up
