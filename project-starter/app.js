@@ -12,6 +12,7 @@ const { sessionSecret } = require("./config");
 const { restoreUser } = require("./auth");
 const storyNewRouter = require("./routes/story-new")
 const storiesRouter = require("./routes/stories")
+const favicon = require('serve-favicon');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(sessionSecret));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
