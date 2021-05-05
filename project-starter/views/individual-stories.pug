@@ -1,6 +1,10 @@
 extends layout
 block content
     div(id="button-container")
+        button(class='btn'): a(href=`/${story.id}/edit`) Edit Story
+        form(action=`/${story.id}` method='post')
+            input(type='hidden' name='_csrf' value=csrfToken)
+            button(class='btn' type='submit') Delete Story
     div(id="individual-story-container")
         div(id="individual-story-title")
             h1 #{story.title}

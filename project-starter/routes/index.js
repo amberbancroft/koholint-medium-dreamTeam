@@ -57,6 +57,7 @@ const storyValidator =[
       })
 ]
 
+// Edit your story
 router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async(req, res) => {
   const id = req.params.id
   const story = await db.Story.findOne({
@@ -69,6 +70,7 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async(req, res) => {
   })
 }))
 
+// Post your edited story
 router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async(req, res) => {
   const id = req.params.id
   const storyToUpdate = await db.Story.findOne({
@@ -99,6 +101,17 @@ router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async(req, res) => {
     })
   }
 }));
+
+// Delete your story
+router.post('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
+  const id = req.params.id
+  const story = await db.Story.findOne({
+    where: {id}
+  })
+  await story.destroy();
+  res.redirect('/stories');
+}));
+
 
 //Exports
 module.exports = router;
