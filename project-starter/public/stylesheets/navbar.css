@@ -1,19 +1,17 @@
-
-/* regular computer window */
 .header-nav__container {
     background-color: #52734d;
     display: flex;
     justify-content: space-between;
 }
 
-#whitespace {
-    width: 600px;
-}
-
 #vl {
-    height: 30px;
+    height: 40px;
     border-left: 2px solid black;
-  }
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0px 0px 0px 15px;
+}
 
 #center {
     display: flex;
@@ -26,29 +24,6 @@
     justify-content: center;
     margin: 10px 0px
 }
-/* span.home{
-
-} */
-
-h2.title{
-    display: flex;
-    justify-content: center;
-
-}
-
-
-/* smaller window */
-@media screen and (max-width: 884px) {
-    #whitespace {
-        width: 200px;
-    }
-}
-
-@media screen and (max-width: 684px) {
-    #whitespace {
-        width: auto;
-    }
-}
 
 .text-only {
     font-size: 12px;
@@ -60,10 +35,31 @@ h2.title{
 
 .landing-button {
     background-color: transparent;
-  }
+}
 
 .landing-button:hover {
     background-color: black;
     color: white;
     transition: 0.5s;
+}
+
+span#buttons{
+    margin-right: 10px;
+}
+
+#buttons > h1 > a {
+    font-size: 35px;
+    text-decoration: none;
+    font-weight: bold;
+    /* margin-left: 5px; */
+}
+
+#vl > h2 {
+    margin-top: 12px;
+    margin-left: 10px;
+}
+
+#nav-image{
+    width: 35px;
+    margin-left: 10px;
 }
