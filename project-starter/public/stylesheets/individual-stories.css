@@ -17,3 +17,8 @@
     line-height: 20px;
     white-space: pre-wrap;
 }
+
+#button-container{
+    display: flex;
+    justify-content: center;
+}
