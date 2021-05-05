@@ -1,0 +1,51 @@
+.landing-header-container {
+  display: flex;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  justify-content: center;
+  background: #8db596;
+  height: 30vh;
+}
+
+.landing-header-content {
+  width: 80%;
+  padding: 10px 0;
+  background-image: url("../images/avocado.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+.landing-header-text {
+  width: 80%;
+}
+.landing-header-img {
+  /* max-width: 10em; */
+}
+
+.landing-button {
+  background-color: transparent;
+}
+.landing-button:hover {
+  background-color: black;
+  color: white;
+  transition: 0.5s;
+}
+
+.landing-top-stories {
+  margin: auto;
+  height: 30vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid gray;
+}
+
+.landing-top-story {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-top-story-timestamp {
+  font-size: 10px;
+}
