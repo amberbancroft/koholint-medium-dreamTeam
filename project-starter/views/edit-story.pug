@@ -1,2 +1,13 @@
 extends layout 
+include utils.pug
 block content
+    +validationErrorSummary(errors)
+    div(class="form-div")
+        form(action=`/${story.id}/edit` method='post')
+            input(type="hidden" name="_csrf" value=csrfToken)
+            div(class='story-container')
+                input(type='text' name='title' class="story-title" placeholder="Name Your Story...")
+            div(class='story-container')
+                textarea(name='content' class='story-text' placeholder="Tell Us Your Story...")
+            div(class='submit-div')
+                button(class="btn" type="submit") Post Your Story
