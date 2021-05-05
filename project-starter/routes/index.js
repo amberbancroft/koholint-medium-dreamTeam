@@ -26,10 +26,12 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   const id = req.params.id
   const story = await db.Story.findOne(
       {where: {id}}
-  )
+  );
+  const user = await db.User.findOne( {where: story.userId});
   res.render('individual-stories', {
     csrfToken: req.csrfToken(),
     story,
+    user,
   })
 }));
 

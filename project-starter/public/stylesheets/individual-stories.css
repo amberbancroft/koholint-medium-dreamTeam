@@ -1,0 +1,14 @@
+#individual-story-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#individual-story-title{
+    margin-top: 5%;
+}
+
+#individual-story-content{
+    margin-top: 4%;
+    width: 70%;
+}

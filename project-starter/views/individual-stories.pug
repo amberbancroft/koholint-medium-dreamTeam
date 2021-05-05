@@ -1,6 +1,9 @@
 extends layout
 block content
-    div(id="individual-story-title")
-        h1 #{story.title}
-    div(id="individual-story-content")
-        h1 #{story.content}
+    div(id="individual-story-container")
+        div(id="individual-story-title")
+            h1 #{story.title}
+        div(id="story-user")
+            p Created By: #{user.userName}
+        div(id="individual-story-content")
+            p(id="paragraph-content") #{story.content}
