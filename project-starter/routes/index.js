@@ -35,5 +35,9 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   })
 }));
 
+router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async(req, res) => {
+  
+}))
+
 //Exports
 module.exports = router;
