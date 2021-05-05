@@ -1,9 +1,11 @@
 extends layout
 block content
-    button(class='new-story-button'): a(href='/story-new') Create New Story
-    ul
+    h1(id="story-header") Your Amazing Stories
+    div(id="new-button")
+        button(class='btn'): a(href='/story-new') Create New Story
+    div(class="story-items")
         each story in stories
-            div(class='stories-display')
-                li=story.title
-                li=story.content
-                li=story.createdAt
+            div(class='items')
+                ul(id="list")
+                    li=story.title
+                    li(class="date") #{story.createdAt}
