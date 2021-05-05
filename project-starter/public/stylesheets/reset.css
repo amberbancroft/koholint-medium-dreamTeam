@@ -38,3 +38,8 @@ nav {
 h1 {
   font-size: 2rem;
 }
+
+button {
+  border: none;
+  outline: none;
+}

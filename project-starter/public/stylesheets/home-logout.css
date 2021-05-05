@@ -1,22 +1,28 @@
+/* HEADER SECTION */
 .landing-header-container {
   display: flex;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
   justify-content: center;
   background: #8db596;
-  height: 30vh;
+  /* height: 30vh; */
 }
 
 .landing-header-content {
   width: 80%;
-  padding: 10px 0;
+  padding: 30px 0;
   background-image: url("../images/avocado.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
 }
+.landing-header-text-box {
+  width: 60%;
+}
+
 .landing-header-text {
-  width: 80%;
+  font-size: 50px;
+  padding-bottom: 20px;
 }
 .landing-header-img {
   /* max-width: 10em; */
@@ -24,11 +30,23 @@
 
 .landing-button {
   background-color: transparent;
+  border: 1px solid black;
 }
 .landing-button:hover {
   background-color: black;
   color: white;
   transition: 0.5s;
+}
+
+/* TRENDING SECTION */
+.trending {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.trending-text {
+  padding-left: 10px;
+  font-weight: bold;
 }
 
 .landing-top-stories {
@@ -48,4 +66,42 @@
 
 .landing-top-story-timestamp {
   font-size: 10px;
+}
+
+/* OTHER STORIES SECTION */
+.other-content {
+  display: flex;
+  justify-content: center;
+}
+
+.landing-other-stories {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+.landing-other-story {
+  /* width: 60%; */
+}
+
+.landing-other-story-title {
+  font-size: 20px;
+}
+.landing-other-story-timestamp {
+  font-size: 10px;
+}
+
+.other-follow {
+  display: flex;
+  flex-direction: column;
+}
+
+.other-follow-text,
+.other-follow-div {
+  background: #feffde;
+  margin: 20px;
+  padding: 20px;
+}
+
+.other-follow-text h3 {
+  font-weight: bold;
 }
