@@ -1,4 +1,4 @@
-extend layout
+extends layout
 
 include utils.pug
 
@@ -7,7 +7,7 @@ block content
         div(class="form-container")
             +validationErrorSummary(errors)
             form(class="login-form" action='/users/login' method='post')
-                h2 Welcome back.
+                h2 Welcome back!
                 input(type="hidden" name="_csrf" value=csrfToken)
 
                 div(class='input-container')

@@ -5,12 +5,12 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: #8db596;
+  background-color: white;
 }
 
 .form-container {
   display: flex;
-  background-color: #feffde;
+  background-color: #8db596;
   width: 80%;
   /* height: 50vh; */
   justify-content: center;
@@ -23,6 +23,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 5px 5px 10px gray;
   width: 100%;
 }
 
