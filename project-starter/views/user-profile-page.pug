@@ -1,0 +1,18 @@
+extends layout
+include utils.pug
+block content
+    div(id='user-name')
+        h1= `${currentUser.firstName } ${currentUser.lastName }`
+    div(id='follow-bar')
+        button(id='follow-btn',class='landing-button'): a(href='/') Follow
+        button(id='story-btn', class='text-only'): a(href='/stories') Stories
+    div(class='hl')
+    div 
+        p Insert Picture Here
+        input(type="file" accept='image/*') 
+        h1= `About ${currentUser.firstName } ${currentUser.lastName }`
+        textarea(name="bio", cols="60", rows="10")
+    div(class='hl')
+    div 
+        h2= `Member Since ${currentUser.createdAt}`
+    

@@ -2,6 +2,7 @@
     background-color: #52734d;
     display: flex;
     justify-content: space-between;
+    padding: 2px 0px 2px 0px;
 }
 
 #vl {
