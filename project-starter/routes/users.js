@@ -7,6 +7,7 @@ const bcrypt = require("bcryptjs");
 const { csrfProtection, asyncHandler } = require("./utils");
 const { loginUser, logoutUser } = require("../auth");
 
+//Validators
 const userValidators = [
   check("userName")
     .exists({ checkFalsy: true })
@@ -59,7 +60,8 @@ const loginvalidators = [
     .withMessage("Password cannot be empty")
 ]
 
-/* GET users listing. */
+//Routes
+//SignUp
 router.get(
   "/signup",
   csrfProtection,
@@ -107,6 +109,7 @@ router.post(
   })
 );
 
+//Login
 router.get('/login', csrfProtection, (req,res) => {
   res.render('user-login', {
     title: "Login",
@@ -138,12 +141,45 @@ router.post("/login", csrfProtection, loginvalidators, asyncHandler(async(req, r
   });
 }));
 
-
-
+//Logout
 router.get('/logout', (req, res) => {
   logoutUser(req,res);
   req.session.save(() => res.redirect("/")) //res.redirect('/');
 });
+
+//User Profile Page 
+router.get(
+  "/:id(\\d+)",
+  csrfProtection,
+  asyncHandler(async (req, res, next) => {
+
+    const userId = parseInt(req.params.id,10);
+    const currentUser = await db.User.findByPk(userId);
+    
+    res.render("user-profile-page", {
+      title: "Profile Page",
+      currentUser,
+      csrfToken: req.csrfToken(),
+    });
+  })
+);
+
+// router.get(
+//   "/:id(\\d+)",
+//   csrfProtection,
+//   asyncHandler(async (req, res, next) => {
+
+//     const userId = parseInt(req.params.id,10);
+//     const cUser = await db.User.findByPk(userId);
+    
+//     res.render("layout", {
+//       title: "Profile Page",
+//       cUser,
+//       csrfToken: req.csrfToken(),
+//     });
+//   })
+// );
+
 
 //Exports
 module.exports = router;

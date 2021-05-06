@@ -1,0 +1,24 @@
+#story-btn{
+    background-color: white;
+}
+
+#follow-btn:hover{
+    background-color: green;
+    color: white;
+    transition: 0.5s;
+}
+
+#user-name {
+    margin: 50px 0px 20px 15px;
+}
+
+#follow-bar{
+    padding: 15px;
+}
+
+.hl {
+    /* height: 5px; */
+    width: 100%;
+    background-color: lightgray;
+    border: .2px solid lightgray;
+}
