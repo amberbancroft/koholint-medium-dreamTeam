@@ -14,12 +14,14 @@ const getTenStories = async () => {
 router.get("/", asyncHandler(async (req, res, next) => {
   const storiesToRender = await getTenStories();
   const firstSixStories = storiesToRender.slice(0,6);
+  firstSixStories.forEach((story,i) => story.number = i+1);
   const lastFourStories = storiesToRender.slice(6);
   res.render("index", {
     title: "Home",
     authenticated: res.locals.authenticated,
     topStories: firstSixStories,
-    otherStories: lastFourStories
+    otherStories: lastFourStories,
+    auth: res.locals.authenticated
   });
 }));
 

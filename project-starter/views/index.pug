@@ -7,26 +7,32 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  div(class="landing-header-container")
-    div(class="landing-header-content")
-      div(class="landing-header-text-box")
-        h1(class="landing-header-text") Where good ideas find you
-        p Read and share new perspectives on just about any to hobby. Everyone's welcome.
-      div(class="landing-header-img-div")
-      button(class="landing-button"): a(href="/users/signup") Get Started
+  if auth
+    div(class="auth-landing") AUTH LANDING CONTENT HERE
+  else 
+    div(class="landing-header-container")
+      div(class="landing-header-content")
+        div(class="landing-header-text-box")
+          h1(class="landing-header-text") Where good ideas find you
+          p Read and share new perspectives on just about any to hobby. Everyone's welcome.
+        div(class="landing-header-img-div")
+        button(class="landing-button"): a(href="/users/signup") Get Started
   section(class="trending")
-  h2(class="trending-text") Trending on Avocati
-  div(class="landing-top-stories")
-    each story in topStories 
-      div(class="landing-top-story")
-        p(class="landing-top-story-title")= story.title
-        p(class="landing-top-story-timestamp")= story.createdAt
+    h2(class="trending-text") Trending on Avocati
+    div(class="landing-top-stories")
+      each story in topStories 
+        div(class="landing-top-story")
+          div(class="trending-number")
+            p= `0${story.number}`
+          div 
+            a(href=`/${story.id}` class="landing-top-story-title")= story.title
+            p(class="landing-top-story-timestamp")= story.createdAt
   div(class="other-content")
     div(class="landing-other-stories")
       each story in otherStories
         div(class="landing-other-story")
           div(class="landing-other-story-textbox")
-            p(class="landing-other-story-title")= story.title
+            a(href=`/${story.id}` class="landing-other-story-title")= story.title
             p(class="landing-other-story-timestamp")= story.createdAt
           div(class="landing-other-story-imgbox")
             img(class="other-story-img" src=story.imgUrl, alt="story-photo.png")
@@ -39,6 +45,6 @@ block content
             p ***PLACEHOLDER TEXT***
             p ***PLACEHOLDER TEXT***
             p ***PLACEHOLDER TEXT***
-        //- import 3 users and populate them here
-  //- designing page for now to exclude the container the suggests topics to follow, 
-  //- will need to change layout of "landing-other-stories once we get there"
+          //- import 3 users and populate them here
+    //- designing page for now to exclude the container the suggests topics to follow, 
+    //- will need to change layout of "landing-other-stories once we get there"
