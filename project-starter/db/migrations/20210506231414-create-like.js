@@ -8,24 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: { model: 'Users' }
-      },
-      storyId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: { model: 'Stories' }
-      },
       likeCount: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      commentId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: { model: 'Comments' }
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

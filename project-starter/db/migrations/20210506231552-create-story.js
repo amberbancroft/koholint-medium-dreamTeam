@@ -21,6 +21,11 @@ module.exports = {
         type: Sequelize.TEXT,
         unique: true
       },
+      likesId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {model: 'Likes'}
+      },
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,

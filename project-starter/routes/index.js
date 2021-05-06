@@ -25,8 +25,10 @@ router.get("/", asyncHandler(async (req, res, next) => {
   });
 }));
 
+
 //View your story
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
+
   const userId = req.session.auth.userId
 
   const id = req.params.id
@@ -38,13 +40,23 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   if (userId === story.userId){
     isCurrentUsersStory = true;
   }
+  const likes = await db.Like.findOne({
+    where: story.likesId
+  })
   res.render('individual-stories', {
     csrfToken: req.csrfToken(),
     story,
     user,
     isCurrentUsersStory,
+    likes,
   })
 }));
+
+// router.patch('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
+//   likes.count += 1;
+//   res.json({ count: likes.count })
+// }))
+
 
 const storyValidator =[
   check('title')

@@ -42,14 +42,20 @@ router.get('/', csrfProtection, asyncHandler(async(req,res) => {
 
 router.post('/', csrfProtection, storyValidator, asyncHandler(async(req,res) => {
     const { title, content, imgUrl } = req.body;
-    console.log("URRLLL ISSSS ", imgUrl);
+    const likeCount = 0
     const userId = req.session.auth.userId
+    const newLike = await db.Like.create({
+        likeCount,
+    })
+    const likesId = newLike.id
     const newStory = await db.Story.build({
         title,
         content,
         userId,
         imgUrl,
+        likesId,
     });
+    
 
     const validatorErrors = validationResult(req);
 
