@@ -24,7 +24,11 @@ const storyValidator =[
                 if (story)
                     return Promise.reject("This story already exists");
             })
-        })
+        }),
+    check('imgUrl')
+        .optional({checkFalsy: true})
+        .isURL()
+        .withMessage("Must be a valid URL")
 ]
 
 
@@ -37,12 +41,14 @@ router.get('/', csrfProtection, asyncHandler(async(req,res) => {
 }))
 
 router.post('/', csrfProtection, storyValidator, asyncHandler(async(req,res) => {
-    const { title, content } = req.body;
+    const { title, content, imgUrl } = req.body;
+    console.log("URRLLL ISSSS ", imgUrl);
     const userId = req.session.auth.userId
     const newStory = await db.Story.build({
         title,
         content,
         userId,
+        imgUrl,
     });
 
     const validatorErrors = validationResult(req);
