@@ -81,7 +81,8 @@
   align-items: center; */
 }
 .landing-other-story {
-  /* width: 60%; */
+  display:flex;
+
 }
 
 .landing-other-story-title {
@@ -90,7 +91,12 @@
 .landing-other-story-timestamp {
   font-size: 10px;
 }
-
+.landing-other-story-imgbox{
+  height:100px;
+}
+.other-story-img{
+  width: 100px;
+}
 .other-follow {
   display: flex;
   flex-direction: column;

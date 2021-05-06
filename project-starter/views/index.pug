@@ -25,8 +25,11 @@ block content
     div(class="landing-other-stories")
       each story in otherStories
         div(class="landing-other-story")
-          p(class="landing-other-story-title")= story.title
-          p(class="landing-other-story-timestamp")= story.createdAt
+          div(class="landing-other-story-textbox")
+            p(class="landing-other-story-title")= story.title
+            p(class="landing-other-story-timestamp")= story.createdAt
+          div(class="landing-other-story-imgbox")
+            img(class="other-story-img" src=story.imgUrl, alt="story-photo.png")
     div(class="other-follow")
         div(class="other-follow-text")
           h3 Follow your favorite writers
