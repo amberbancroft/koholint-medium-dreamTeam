@@ -30,3 +30,12 @@
     display: flex;
     justify-content: center;
 }
+
+.edit-btn {
+    width: 100px;
+    height: 25px;
+}
+
+.edit-redirect {
+    font-size: 13.5px;
+}
