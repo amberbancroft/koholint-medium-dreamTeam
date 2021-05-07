@@ -1,0 +1,19 @@
+extends layout
+include utils.pug
+block content
+    if boolean
+        div(id='user-name')
+            h1= `${currentUser.firstName } ${currentUser.lastName }`
+            div(id='follow-bar')
+                button(id='followers-btn', class='text-only'): a(href='/') Followers
+                button(id='story-btn', class='text-only'): a(href='/stories') Stories
+                button(class='green-btn') Save
+            div(class='hl')
+            p Insert Picture Here
+            input(id='imageUrl', type="text") 
+            h1= `About ${currentUser.firstName } ${currentUser.lastName }`
+            textarea(id='bio', name="bio", cols="60", rows="10")
+            div(class='hl')
+            div 
+                h2(id='date')= `Member Since ${currentUser.createdAt}`
+                h5(id='follow')= 'Followers ~ Following'

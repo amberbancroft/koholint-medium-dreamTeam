@@ -152,33 +152,60 @@ router.get(
   "/:id(\\d+)",
   csrfProtection,
   asyncHandler(async (req, res, next) => {
-
+    //variable declarations
     const userId = parseInt(req.params.id,10);
     const currentUser = await db.User.findByPk(userId);
+    let boolean = false;
+
+    //if defined
+    if(req.session.auth) {
+      boolean = userId === req.session.auth.userId;
+    }
+
+    //Image and bio conditional
+    // if(){
+
+    // }
     
     res.render("user-profile-page", {
       title: "Profile Page",
       currentUser,
       csrfToken: req.csrfToken(),
+      boolean
     });
   })
 );
 
-// router.get(
-//   "/:id(\\d+)",
-//   csrfProtection,
-//   asyncHandler(async (req, res, next) => {
+router.get(
+  "/:id(\\d+)/edit",
+  csrfProtection,
+  asyncHandler(async (req, res, next) => {
+    //variable declarations
+    const userId = parseInt(req.params.id,10);
+    const currentUser = await db.User.findByPk(userId);
+    let boolean = false;
 
-//     const userId = parseInt(req.params.id,10);
-//     const cUser = await db.User.findByPk(userId);
+    //if defined
+    if(req.session.auth) {
+      boolean = userId === req.session.auth.userId;
+    }
     
-//     res.render("layout", {
-//       title: "Profile Page",
-//       cUser,
-//       csrfToken: req.csrfToken(),
-//     });
-//   })
-// );
+    res.render("user-profile-page-edit", {
+      title: "Edit Profile Page",
+      currentUser,
+      csrfToken: req.csrfToken(),
+      boolean
+    });
+  })
+);
+
+router.patch(
+  "/:id(\\d+)/edit",
+  asyncHandler(async (req, res, next) => {
+    const userId = parseInt(req.params.id,10);
+    res.json({userId})
+  })
+);
 
 
 //Exports
