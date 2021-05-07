@@ -30,16 +30,16 @@ router.get("/", asyncHandler(async (req, res, next) => {
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
 
   let isCurrentUsersStory = false;
+  const id = req.params.id
+  const story = await db.Story.findOne(
+      {where: {id}}
+  );
   if (req.session.auth){
     const userId = req.session.auth.userId
     if (userId === story.userId){
       isCurrentUsersStory = true;
     }
   }
-  const id = req.params.id
-  const story = await db.Story.findOne(
-      {where: {id}}
-  );
   const user = await db.User.findOne( {where: story.userId});
 
   const likes = await db.Like.findByPk(story.likesId);
