@@ -29,26 +29,29 @@ router.get("/", asyncHandler(async (req, res, next) => {
 //View your story
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
 
-  const userId = req.session.auth.userId
-
+  let isCurrentUsersStory = false;
+  if (req.session.auth){
+    const userId = req.session.auth.userId
+    if (userId === story.userId){
+      isCurrentUsersStory = true;
+    }
+  }
   const id = req.params.id
   const story = await db.Story.findOne(
       {where: {id}}
   );
   const user = await db.User.findOne( {where: story.userId});
-  let isCurrentUsersStory = false;
-  if (userId === story.userId){
-    isCurrentUsersStory = true;
-  }
+
   const likes = await db.Like.findByPk(story.likesId);
-  res.render('individual-stories', {
-    csrfToken: req.csrfToken(),
-    story,
-    user,
-    isCurrentUsersStory,
-    likes,
-    pageId: req.params.id,
-  })
+    res.render('individual-stories', {
+      csrfToken: req.csrfToken(),
+      story,
+      user,
+      isCurrentUsersStory,
+      likes,
+      pageId: req.params.id,
+    })
+
 }));
 
 router.patch('/:id(\\d+)', asyncHandler(async(req, res) => {
