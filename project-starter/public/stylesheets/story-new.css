@@ -18,12 +18,12 @@
   outline: none;
   resize: none;
   height: 500px;
-  background-color: #feffde;
+  /* background-color: #feffde; */
 }
 
 .story-title {
   font-size: 24px;
   border: none;
-  background-color: #feffde;
+  /* background-color: #feffde; */
   outline: none;
 }
