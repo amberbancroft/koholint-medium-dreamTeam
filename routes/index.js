@@ -47,13 +47,25 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     user,
     isCurrentUsersStory,
     likes,
+    pageId: req.params.id,
   })
 }));
 
-// router.patch('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
-//   likes.count += 1;
-//   res.json({ count: likes.count })
-// }))
+router.patch('/:id(\\d+)', asyncHandler(async(req, res) => {
+
+  const id = req.params.id;
+  const story = await db.Story.findOne(
+    {where: {id}}
+);
+  const likes = await db.Like.findByPk(story.likesId);
+  let likeCount = likes.likeCount;
+  likeCount+=1;
+  console.log("THIIIIIIIIS", likeCount)
+  await likes.update({
+    likeCount,
+  })
+  res.json({likeCount})
+}))
 
 
 const storyValidator =[
