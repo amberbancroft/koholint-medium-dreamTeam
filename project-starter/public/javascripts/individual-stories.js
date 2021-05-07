@@ -25,13 +25,19 @@ like.addEventListener('click', (e) => {
     setTimeout(()=> {
     e.target.classList.remove("fa-lg");
     }, 100)
-    // fetch('/:id(\\d+)', {
-    //     method: "PATCH",
-    // }).then(function(res) {
-    //     if (!res.ok) {
-    //         throw Error(res.statusText); 
-    //     }
-    //     return res.json();
-    // })
-    // .then()
+    fetch(`/${like.dataset.value}`, {
+        method: "PATCH",
+    }).then(function(res) {
+        if (!res.ok) {
+            throw Error(res.statusText);
+        }
+        return res.json();
+    })
+    .then(function(like){
+        const likeCounter = document.querySelector(".story-likes");
+        likeCounter.innerHTML = like.likeCount;
+    })
+    .catch((error)=>{
+        console.error(error)
+    })
 })
