@@ -1,8 +1,6 @@
 extends layout
 block content
     h1(id="story-header") Your Amazing Stories
-    div(id="new-button")
-        button(class='btn'): a(href='/story-new') Create New Story
     div(class="story-items")
         each story in stories
             a(href=`/${story.id}`)
