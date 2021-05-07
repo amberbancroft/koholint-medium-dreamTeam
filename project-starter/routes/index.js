@@ -50,10 +50,17 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   })
 }));
 
-// router.patch('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
-//   likes.count += 1;
-//   res.json({ count: likes.count })
-// }))
+router.patch('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
+  const id = req.params.id;
+  const story = await db.Story.findOne(
+    {where: {id}}
+);
+  const likes = await db.Like.findByPk(story.likesId);
+  const likeCount = likes.likeCount += 1;
+  const likeUpdate = await db.Like.update({
+    likeCount,
+  })
+}))
 
 
 const storyValidator =[
