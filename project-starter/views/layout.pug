@@ -5,8 +5,6 @@ html
         title= title
         link(rel="stylesheet", href="/stylesheets/index.css")
         link(rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon")
-        script(src="https://kit.fontawesome.com/c8dd27a445.js" crossorigin="anonymous")
-        script(src="/javascripts/index.js" async defer) 
   body
     if authenticated 
       div(class="header-nav__container")
@@ -18,7 +16,7 @@ html
         span(id='buttons')
           button(class='text-only'): a(href='/users/logout') Sign Out
           button(class='text-only'): a(href='/story-new') Write
-          button(class='landing-button'): a(href=`/users/${user.id}`) User Profile
+          button(class='landing-button'): a(href=`/users/${user.id}`) Demo Profile
     else
       div(class="header-nav__container")  
         span(id='buttons', class="header-nav__group")

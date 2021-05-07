@@ -3,16 +3,19 @@ include utils.pug
 block content
     div(id='user-name')
         h1= `${currentUser.firstName } ${currentUser.lastName }`
-    div(id='follow-bar')
-        button(id='follow-btn',class='landing-button'): a(href='/') Follow
-        button(id='story-btn', class='text-only'): a(href='/stories') Stories
-    div(class='hl')
-    div 
-        p Insert Picture Here
-        input(type="file" accept='image/*') 
-        h1= `About ${currentUser.firstName } ${currentUser.lastName }`
-        textarea(name="bio", cols="60", rows="10")
-    div(class='hl')
-    div 
-        h2= `Member Since ${currentUser.createdAt}`
-    
+        div(id='follow-bar')
+            button(class='green-btn'): a(href='/users/login') Follow
+            button(id='followers-btn', class='text-only'): a(href='/') Followers
+            button(id='story-btn', class='text-only'): a(href='/stories') Stories
+            if boolean
+                button(id='edit-btn', class='text-only'): a(href=`/users/${user.id}/edit`) Edit
+        div(class='hl')
+        img(src=`${currentUser.imageUrl}`)
+        div 
+            h1(id='bio-box')= `About ${currentUser.firstName } ${currentUser.lastName }`
+            h3=`${currentUser.bio}`
+        div(class='hl')
+        div 
+            h2(id='date')= `Member Since ${currentUser.createdAt}`
+            h5(id='follow')= 'Followers ~ Following'
+
