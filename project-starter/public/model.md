@@ -1,5 +1,18 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
+  const Like = sequelize.define('Like', {
+    userId: DataTypes.INTEGER,
+    likeCount: DataTypes.INTEGER
+  }, {});
+  Like.associate = function(models) {
+    // associations can be defined here
+    Like.hasMany(models.Story, {foreignKey: 'likesId'})
+  };
+  return Like;
+};
+
+'use strict';
+module.exports = (sequelize, DataTypes) => {
   const Story = sequelize.define('Story', {
     title: {type: DataTypes.STRING(50), allowNull: false },
     imgUrl: {type: DataTypes.STRING(255)},
