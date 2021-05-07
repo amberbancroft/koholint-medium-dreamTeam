@@ -165,11 +165,12 @@ router.get(
     // if(){
 
     // }
-    
+    console.log("What is it?????", userId)
     res.render("user-profile-page", {
       title: "Profile Page",
       currentUser,
-      boolean
+      boolean,
+      pageId: userId,
     });
   })
 );
@@ -205,6 +206,31 @@ router.patch(
     res.json({userId})
   })
 );
+
+
+router.patch('/:id(\\d+)', asyncHandler(async(req, res) => {
+  const userId = parseInt(req.params.id,10);
+  const followerId = req.session.auth.userId;
+  const followedId = userId;
+  const currentUser = await db.User.findByPk(userId);
+  let boolean = false;
+
+    //if defined
+    if(req.session.auth) {
+      boolean = userId === req.session.auth.userId;
+    }
+
+  await db.Follow.create({
+    followerId,
+    followedId,
+  })
+  res.render('user-profile-page', {
+    userId,
+    currentUser,
+    boolean,
+  })
+
+}))
 
 
 //Exports
