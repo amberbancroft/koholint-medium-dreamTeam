@@ -41,10 +41,18 @@
 }
 
 /********COMMENT STYLING************/
-.story-comment:hover{
+.story-comment:hover,
+#like-button:hover{
     opacity: 0.5;
+    transition: .2s;
+    transition-timing-function: cubic-bezier(0, 1.56, 1, 1.03);
 }
-
+.story-comment,
+#like-button{
+    margin: 0 10px;
+    transition: .2s;
+    transition-timing-function: cubic-bezier(0, 1.56, 1, 1.03);
+}
 #comment-box{
     position: fixed;
     right: 0;
@@ -58,9 +66,9 @@
     flex-direction: column;
     align-items: center;
 }
-.hidden{
+/* .hidden{
     transform: translate(30vw);
-}
+} */
 .comment-exit{
   display: flex;
   width: 90%;
@@ -71,7 +79,7 @@
   cursor: pointer;
 } 
 .comment-input{
-    width: 90%;
+    width: 90%; 
 }
 .comment-form{
     box-shadow: 0px 0px 20px lightgray;
@@ -79,4 +87,16 @@
 #comment-content{
     resize: none;
     border: none;
+}
+#comment-content:focus{
+    outline:none;
+}
+.comment-form div{
+    width: 100%;
+    height: 40px;
+    position: relative;
+}
+.comment-form button{
+    position: absolute;
+    right: 10px;
 }
