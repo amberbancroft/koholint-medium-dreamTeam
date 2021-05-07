@@ -1,5 +1,7 @@
 extends layout
 include utils.pug
+append head 
+  script(src="/javascripts/user-edit.js" type="module" defer)
 block content
     if boolean
         div(id='user-name')
@@ -7,7 +9,7 @@ block content
             div(id='follow-bar')
                 button(id='followers-btn', class='text-only'): a(href='/') Followers
                 button(id='story-btn', class='text-only'): a(href='/stories') Stories
-                button(class='green-btn') Save
+                button(id='save-btn' class='green-btn') Save
             div(class='hl')
             p Insert Picture Here
             input(id='imageUrl', type="text") 

@@ -10,7 +10,9 @@ block content
             if boolean
                 button(id='edit-btn', class='text-only'): a(href=`/users/${user.id}/edit`) Edit
         div(class='hl')
-        img(src=`${currentUser.imageUrl}`)
+        //- Added this if conditional to render img ONLY if it exists
+        if currentUser.imageUrl
+          img(src=`${currentUser.imageUrl}`)
         div 
             h1(id='bio-box')= `About ${currentUser.firstName } ${currentUser.lastName }`
             h3=`${currentUser.bio}`

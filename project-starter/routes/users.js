@@ -150,7 +150,6 @@ router.get('/logout', (req, res) => {
 //User Profile Page 
 router.get(
   "/:id(\\d+)",
-  csrfProtection,
   asyncHandler(async (req, res, next) => {
     //variable declarations
     const userId = parseInt(req.params.id,10);
@@ -170,7 +169,6 @@ router.get(
     res.render("user-profile-page", {
       title: "Profile Page",
       currentUser,
-      csrfToken: req.csrfToken(),
       boolean
     });
   })
@@ -202,6 +200,7 @@ router.get(
 router.patch(
   "/:id(\\d+)/edit",
   asyncHandler(async (req, res, next) => {
+
     const userId = parseInt(req.params.id,10);
     res.json({userId})
   })
