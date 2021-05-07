@@ -11,7 +11,7 @@ block content
         div(id="individual-story-content")
             p(id="paragraph-content") #{story.content}
         div(id="like-button")
-            button(class="story-likes" type="submit")= likes.likeCount
+            button(class="story-likes" type="submit") #{likes.likeCount}
     if isCurrentUsersStory
         div(id="button-container")
             button(class='edit-btn'): a(href=`/${story.id}/edit` class="edit-redirect") Edit Story

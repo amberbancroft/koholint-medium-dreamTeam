@@ -40,9 +40,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   if (userId === story.userId){
     isCurrentUsersStory = true;
   }
-  const likes = await db.Like.findOne({
-    where: story.likesId
-  })
+  const likes = await db.Like.findByPk(story.likesId);
   res.render('individual-stories', {
     csrfToken: req.csrfToken(),
     story,
