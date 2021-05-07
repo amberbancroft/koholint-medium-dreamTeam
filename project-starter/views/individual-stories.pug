@@ -10,6 +10,15 @@ block content
                 img(id="image" src=`${story.imgUrl}`)
         div(id="individual-story-content")
             p(id="paragraph-content") #{story.content}
+            i(class="far fa-comment story-comment")
+        div(id="comment-box" class="hidden") 
+            div(class="comment-section comment-exit")
+                p Responses 
+                i(class="fas fa-times")
+            div(class="comment-section comment-input")
+                form(class="comment-form")
+                  textarea(id="comment-content" name='comment-content' placeholder="What are your thoughts?" rows="5" cols="35")
+                  button Respond
     if isCurrentUsersStory
         div(id="button-container")
             button(class='btn'): a(href=`/${story.id}/edit`) Edit Story
