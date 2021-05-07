@@ -6,7 +6,11 @@ block content
     div(id='user-name')
         h1= `${currentUser.firstName } ${currentUser.lastName }`
         div(id='follow-bar')
-            button(id='follow-button' class='green-btn' type='submit' data-Value=pageId) Follow
+            if !boolean
+                if loggedIn
+                button(id='follow-button' class='green-btn-follow' type='submit' data-Value=pageId) Follow
+            else if !loggedIn
+                button(class='green-btn'): a(href='/users/login') Follow
             button(id='followers-btn', class='text-only'): a(href='/') Followers
             button(id='story-btn', class='text-only'): a(href='/stories') Stories
             if boolean

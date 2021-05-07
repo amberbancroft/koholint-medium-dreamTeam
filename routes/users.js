@@ -214,15 +214,51 @@ router.patch('/:id(\\d+)', asyncHandler(async(req, res) => {
   const followedId = userId;
   const currentUser = await db.User.findByPk(userId);
   let boolean = false;
+  let loggedIn = false;
+
+    //if defined
+    if (req.session.auth) {
+      boolean = userId === req.session.auth.userId;
+      loggedIn = true;
+    }
+
+    console.log("What is this", loggedIn)
+
+    if (followerId !== userId) {
+      await db.Follow.create({
+        followerId,
+        followedId,
+      })
+    }
+
+  res.render('user-profile-page', {
+    userId,
+    currentUser,
+    boolean,
+    loggedIn,
+  })
+
+}))
+
+
+router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
+  const userId = parseInt(req.params.id,10);
+  const followerId = req.session.auth.userId;
+  const followedId = userId;
+  const currentUser = await db.User.findByPk(userId);
+  let boolean = false;
 
     //if defined
     if(req.session.auth) {
       boolean = userId === req.session.auth.userId;
     }
 
-  await db.Follow.create({
-    followerId,
-    followedId,
+  await db.Follow.destroy({
+    where: {
+      followerId,
+      followedId
+      // followedId: followerId,
+    }
   })
   res.render('user-profile-page', {
     userId,
