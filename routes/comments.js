@@ -27,8 +27,9 @@ router.post("/:storyId", asyncHandler(async (req, res) => {
             content: comment.content, 
             userName: userCommenting.userName, 
             createdAt: comment.timestamp, 
-            likes: like.likeCount}); //will need to add a separate eventlistener and api route for this
-
+            likes: like.likeCount,
+            commentId: comment.id
+        }); //will need to add a separate eventlistener and api route for this
         return;
     } 
     
@@ -36,12 +37,19 @@ router.post("/:storyId", asyncHandler(async (req, res) => {
     res.json({authorized});
 }));
 
-router.patch("/:commentId", asyncHandler(async (req, res) => {
+router.put("/:commentId", asyncHandler(async (req, res) => {
 //Update the comment and send back the updated content for ajax rendering 
+    const commentId = req.params.commentId
+    const {content} = req.body;
+    console.log("PUT REQUEST RECEIIIIVED!! EDITING COMMENT", req.params.commentId );
 }));
 
 router.delete("/:commentId", asyncHandler(async (req, res) => {
-
+    const commentId = req.params.commentId
+    console.log("DELETE REQUEST RECIIIIEVED!!!! DELETING COMMMENT", commentId);
+    const comment = await db.Comment.findByPk(commentId);
+    comment.destroy();
+    res.json({delete: true}); //added this so fetch await completes
 }));
 
 module.exports = router;

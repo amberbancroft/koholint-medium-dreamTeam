@@ -107,7 +107,7 @@
 .single-comment-box{
     position: relative;
     margin: 20px 0;
-    box-shadow: 0px 0px 20px lightgray;
+    /* box-shadow: 0px 0px 20px lightgray; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 25px 40px 40px;
