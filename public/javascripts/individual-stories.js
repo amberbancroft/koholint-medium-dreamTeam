@@ -3,7 +3,7 @@ console.log("hello world");
 const commentBox = document.querySelector("#comment-box");
 const commentsDisplay = document.querySelector(".comments-display");
 const commentButton = document.querySelector(".story-comment")
-const commentContentBox = document.querySelector("#comment-content");
+const commentContentBox = document.querySelector(".comment-display");
 commentButton.addEventListener("click", e => {
     commentBox.classList.toggle("hidden");
     commentButton.classList.toggle("fa-lg");
