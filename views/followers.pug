@@ -1,7 +1,9 @@
 extends layout
 include utils.pug
 block content
+    h1(id="follower-heading") Your Current Followers
     div(id="followers-list")
-        ul
-            each person in followers
-                li= person.User.userName
+        ul(id="ul")
+                each person in followers
+                    if person.followers
+                        li= person.followers.userName

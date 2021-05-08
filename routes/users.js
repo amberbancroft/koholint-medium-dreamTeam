@@ -272,9 +272,12 @@ router.get('/:id(\\d+)/followers', asyncHandler(async(req, res) => {
     where: {
       followedId
     },
-    include: db.User,
+    include: {
+      model: db.User,
+      as: 'followers'
+    }
+
   });
-  console.log(followers[0].User);
   res.render('followers', {
     followers
   })
