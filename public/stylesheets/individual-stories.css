@@ -67,12 +67,13 @@
     align-items: center;
     overflow: auto;
 }
+.comment-section {width: 90%;}
 /* .hidden{
     transform: translate(30vw);
 } */
 .comment-exit{
   display: flex;
-  width: 90%;
+  /* width: 90%; */
   justify-content: space-between;
 }
 .comment-exit i {
@@ -84,6 +85,7 @@
 }
 .comment-form{
     box-shadow: 0px 0px 20px lightgray;
+    margin-bottom: 10px
 }
 #comment-content{
     resize: none;
@@ -100,4 +102,52 @@
 .comment-form button{
     position: absolute;
     right: 10px;
+}
+/******** POSTED COMMENTS ********/
+.single-comment-box{
+    position: relative;
+    margin: 20px 0;
+    box-shadow: 0px 0px 20px lightgray;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 25px 40px 40px;
+    grid-template-areas: "username username menu"
+                         "timestamp timestamp timestamp"
+                         "content content content";
+}
+.single-comment-box__user{
+    color: rgb(70, 70, 70);
+    grid-area: username;
+    align-self: start;
+}
+.single-comment-box i {
+    padding: 10px;
+    grid-area: menu;
+    justify-self: end;
+    align-self: start;
+    cursor: pointer;
+}
+.posted-comment-timestamp {
+    grid-area: timestamp;
+    color: gray;
+    font-size: 10px;
+} 
+.posted-comment-content {
+    grid-area: content;
+    color: black;
+}
+.single-comment-box p {
+    margin: 10px
+}
+
+.edit-delete-comment{
+    position: absolute;
+    right: 0px;
+    top: 38px;
+    box-shadow: 0px 0px 20px lightgray;
+    background-color: white;
+}
+
+.edit-delete-comment.hidden{
+    display: none;
 }

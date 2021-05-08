@@ -29,10 +29,15 @@ block content
             div(class="comment-section comments-display")
                 each comment in story.Comments 
                   div(class="single-comment-box")
-                    div(class="single-comment-box__user")
+                    div(class="single-comment-box__user" data-id=comment.User.id)
                       p= comment.User.userName
-                      p= comment.createdAt
-                    p= comment.content
+                    if (loggedInUserId === comment.User.id)
+                      i(class="fas fa-ellipsis-h")
+                      div(class="edit-delete-comment hidden")
+                        i(class="fas fa-edit")
+                        i(class="fas fa-trash-alt")
+                    p(class="posted-comment-timestamp")= comment.timestamp
+                    p(class="posted-comment-content")= comment.content
     if isCurrentUsersStory
         div(id="button-container")
             button(class='edit-btn'): a(href=`/${story.id}/edit` class="edit-redirect") Edit Story

@@ -1,6 +1,6 @@
 //Imports
 const express = require("express");
-const { csrfProtection, asyncHandler} = require("./utils");
+const { csrfProtection, asyncHandler, timestampShortener} = require("./utils");
 const db = require("../db/models");
 const {Comment, User, Like} = db;
 const { validationResult, check } = require("express-validator");
@@ -10,6 +10,7 @@ const getTenStories = async () => {
   const allStories = await db.Story.findAll();
   return allStories.slice(0,10);
 }
+
 
 /* GET home page. */
 router.get("/", asyncHandler(async (req, res, next) => {
@@ -29,7 +30,7 @@ router.get("/", asyncHandler(async (req, res, next) => {
 
 //View your story
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
-
+  let loggedInUserId = null;
   let isCurrentUsersStory = false;
   const id = req.params.id
   const story = await db.Story.findOne(
@@ -37,14 +38,19 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
       {where: {id} , include: {model: Comment, include: [User, Like]}}
   );
   if (req.session.auth){
-    const userId = req.session.auth.userId
-    if (userId === story.userId){
+    loggedInUserId = req.session.auth.userId
+    if (loggedInUserId === story.userId){
       isCurrentUsersStory = true;
     }
   }
 
-  const user = await db.User.findOne( {where: story.userId});
+  //Adds a property 'timestamp' to each comment object which contains shortened date as string
+  story.Comments.forEach(comment => {
+    comment.timestamp = timestampShortener(comment.createdAt.toString());
+    console.log("EEEDDIDIIITTTED COMMMMENT", comment.timestamp);
+  });
 
+  const user = await db.User.findOne( {where: story.userId});
   const likes = await db.Like.findByPk(story.likesId);
     res.render('individual-stories', {
       csrfToken: req.csrfToken(),
@@ -53,6 +59,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
       isCurrentUsersStory,
       likes,
       pageId: req.params.id,
+      loggedInUserId,
     })
 
 }));
