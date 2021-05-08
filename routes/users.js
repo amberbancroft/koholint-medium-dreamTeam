@@ -129,7 +129,7 @@ router.post("/login", csrfProtection, loginvalidators, asyncHandler(async(req, r
         loginUser(req,res,user);
         return req.session.save(() => res.redirect("/")) //return res.redirect('/');
       }
-    } 
+    }
     errors.push("Invalid password, please try again.")
   } else {
     errors = validatorErrors.array().map((error) => error.msg);
@@ -147,7 +147,7 @@ router.get('/logout', (req, res) => {
   req.session.save(() => res.redirect("/")) //res.redirect('/');
 });
 
-//User Profile Page 
+//User Profile Page
 router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res, next) => {
@@ -155,21 +155,24 @@ router.get(
     const userId = parseInt(req.params.id,10);
     const currentUser = await db.User.findByPk(userId);
     let boolean = false;
+    let loggedIn = false;
 
     //if defined
     if(req.session.auth) {
       boolean = userId === req.session.auth.userId;
+      loggedIn = true;
     }
 
     //Image and bio conditional
     // if(){
 
     // }
-    
     res.render("user-profile-page", {
       title: "Profile Page",
       currentUser,
-      boolean
+      boolean,
+      pageId: userId,
+      loggedIn,
     });
   })
 );
@@ -187,12 +190,13 @@ router.get(
     if(req.session.auth) {
       boolean = userId === req.session.auth.userId;
     }
-    
+
     res.render("user-profile-page-edit", {
       title: "Edit Profile Page",
       currentUser,
       csrfToken: req.csrfToken(),
-      boolean
+      boolean,
+      loggedIn,
     });
   })
 );
@@ -205,6 +209,76 @@ router.patch(
     res.json({userId})
   })
 );
+
+
+router.patch('/:id(\\d+)', asyncHandler(async(req, res) => {
+  const userId = parseInt(req.params.id,10);
+  const followerId = req.session.auth.userId;
+  const followedId = userId;
+  const currentUser = await db.User.findByPk(userId);
+  let boolean = false; //logged in and on same page
+
+    //if defined
+    if (req.session.auth) {
+      boolean = userId === req.session.auth.userId;
+    }
+
+    if (followerId !== userId) {
+      await db.Follow.create({
+        followerId,
+        followedId,
+      })
+    }
+
+  res.render('user-profile-page', {
+    userId,
+    currentUser,
+    boolean,
+  })
+
+}))
+
+
+router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
+  const userId = parseInt(req.params.id,10);
+  const followerId = req.session.auth.userId;
+  const followedId = userId;
+  const currentUser = await db.User.findByPk(userId);
+  let boolean = false;
+
+    //if defined
+    if(req.session.auth) {
+      boolean = userId === req.session.auth.userId;
+    }
+
+  await db.Follow.destroy({
+    where: {
+      followerId,
+      followedId
+    }
+  })
+  res.render('user-profile-page', {
+    userId,
+    currentUser,
+    boolean,
+  })
+
+}))
+
+router.get('/:id(\\d+)/followers', asyncHandler(async(req, res) => {
+  const userId = parseInt(req.params.id,10);
+  const followedId = userId;
+  const followers = await db.Follow.findAll({
+    where: {
+      followedId
+    },
+    include: db.User,
+  });
+  console.log(followers[0].User);
+  res.render('followers', {
+    followers
+  })
+}));
 
 
 //Exports

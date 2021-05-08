@@ -33,6 +33,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   let isCurrentUsersStory = false;
   const id = req.params.id
   const story = await db.Story.findOne(
+
       {where: {id} , include: {model: Comment, include: [User, Like]}}
   );
   if (req.session.auth){
@@ -41,7 +42,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
       isCurrentUsersStory = true;
     }
   }
-  // console.log(story.Comments[0]);
+
   const user = await db.User.findOne( {where: story.userId});
 
   const likes = await db.Like.findByPk(story.likesId);
