@@ -12,6 +12,7 @@ const { sessionSecret } = require("./config");
 const { restoreUser } = require("./auth");
 const storyNewRouter = require("./routes/story-new")
 const storiesRouter = require("./routes/stories")
+const commentsAPIRouter = require("./routes/comments");
 const favicon = require('serve-favicon');
 
 const app = express();
@@ -46,7 +47,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/story-new", storyNewRouter);
 app.use('/stories', storiesRouter);
-
+app.use("/comments", commentsAPIRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

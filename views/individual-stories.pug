@@ -22,10 +22,17 @@ block content
                 p Responses
                 i(class="fas fa-times")
             div(class="comment-section comment-input")
-                form(class="comment-form")
+                form(class="comment-form" data-Value=pageId)
                   textarea(id="comment-content" name='comment-content' placeholder="What are your thoughts?" rows="5" cols="35")
                   div
                     button Respond
+            div(class="comment-section comments-display")
+                each comment in story.Comments 
+                  div(class="single-comment-box")
+                    div(class="single-comment-box__user")
+                      p= comment.User.userName
+                      p= comment.createdAt
+                    p= comment.content
     if isCurrentUsersStory
         div(id="button-container")
             button(class='edit-btn'): a(href=`/${story.id}/edit` class="edit-redirect") Edit Story

@@ -2,6 +2,7 @@
 const express = require("express");
 const { csrfProtection, asyncHandler} = require("./utils");
 const db = require("../db/models");
+const {Comment, User, Like} = db;
 const { validationResult, check } = require("express-validator");
 const router = express.Router();
 
@@ -32,7 +33,8 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   let isCurrentUsersStory = false;
   const id = req.params.id
   const story = await db.Story.findOne(
-      {where: {id}}
+
+      {where: {id} , include: {model: Comment, include: [User, Like]}}
   );
   if (req.session.auth){
     const userId = req.session.auth.userId
@@ -40,6 +42,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
       isCurrentUsersStory = true;
     }
   }
+
   const user = await db.User.findOne( {where: story.userId});
 
   const likes = await db.Like.findByPk(story.likesId);
