@@ -18,12 +18,16 @@ router.get("/", asyncHandler(async (req, res, next) => {
   const firstSixStories = storiesToRender.slice(0,6);
   firstSixStories.forEach((story,i) => story.number = i+1);
   const lastFourStories = storiesToRender.slice(6);
+  let user;
+  if(req.session.auth){
+    user = await db.User.findByPk(req.session.auth.userId);
+  }
   res.render("index", {
     title: "Home",
     authenticated: res.locals.authenticated,
     topStories: firstSixStories,
     otherStories: lastFourStories,
-    auth: res.locals.authenticated
+    user
   });
 }));
 

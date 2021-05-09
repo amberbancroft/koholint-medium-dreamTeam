@@ -39,6 +39,9 @@
   transition: 0.5s;
 }
 
+.demo {
+  margin-left: 20px;
+}
 /* TRENDING SECTION */
 .trending {
   /* display: flex;
@@ -128,7 +131,7 @@
 
 .other-follow-text,
 .other-follow-div {
-  background: #feffde;
+  background: #f0ebcc;
   margin: 20px;
   padding: 20px;
 }

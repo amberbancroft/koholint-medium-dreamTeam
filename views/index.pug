@@ -7,16 +7,21 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  if auth
-    div(class="auth-landing") AUTH LANDING CONTENT HERE
-  else 
-    div(class="landing-header-container")
-      div(class="landing-header-content")
+  div(class="landing-header-container")
+    div(class="landing-header-content")
+      if authenticated
+        div(class="landing-header-text-box")
+          h1(class="landing-header-text") Welcome Back, #{user.firstName}
+          p Read and share new perspectives on just about any to hobby. Everyone's welcome.
+        div(class="landing-header-img-div")
+        button(class='landing-button'): a(href=`/users/${user.id}`) My Profile
+      else 
         div(class="landing-header-text-box")
           h1(class="landing-header-text") Where good ideas find you
           p Read and share new perspectives on just about any to hobby. Everyone's welcome.
         div(class="landing-header-img-div")
         button(class="landing-button"): a(href="/users/signup") Get Started
+        button(class="landing-button demo"): a Demo
   section(class="trending")
     h2(class="trending-text") Trending on Avocati
     div(class="landing-top-stories")
