@@ -12,7 +12,8 @@ block content
       if authenticated
         div(class="landing-header-text-box")
           h1(class="landing-header-text") Welcome Back, #{user.firstName}
-          p Read and share new perspectives on just about any to hobby. Everyone's welcome.
+          p Start sharing your passions 
+            span: a(href="/story-new") here
         div(class="landing-header-img-div")
         button(class='landing-button'): a(href=`/users/${user.id}`) My Profile
       else 
@@ -21,7 +22,7 @@ block content
           p Read and share new perspectives on just about any to hobby. Everyone's welcome.
         div(class="landing-header-img-div")
         button(class="landing-button"): a(href="/users/signup") Get Started
-        button(class="landing-button demo"): a Demo
+        button(class="landing-button demo"): a(href="/users/demo") Demo
   section(class="trending")
     h2(class="trending-text") Trending on Avocati
     div(class="landing-top-stories")
