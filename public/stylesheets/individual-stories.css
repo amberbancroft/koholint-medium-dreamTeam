@@ -87,7 +87,7 @@
     box-shadow: 0px 0px 20px lightgray;
     margin-bottom: 10px
 }
-#comment-content{
+textarea{
     resize: none;
     border: none;
 }
@@ -150,4 +150,14 @@
 
 .edit-delete-comment.hidden{
     display: none;
+}
+
+.edit-box {
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+}
+.edit-box textarea:focus{
+    outline: none;
+    /* border: 1px solid black; */
 }

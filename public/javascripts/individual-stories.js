@@ -7,18 +7,53 @@ const menuButtons = document.querySelectorAll(".single-comment-box .fa-ellipsis-
 const deleteAndEditMenus = document.querySelectorAll(".edit-delete-comment");
 
 const addEditDeleteListener = (editButton, deleteButton, commentId) => {
+    // console.log('COMMENT ID', commentId);
+    const commentBox = document.querySelector(`div[data-comment-id="${commentId}"]`)
+    let saveOpen = false;
     /*When edit is clicked, render a textbox and save button*/
     editButton.addEventListener('click', async e => {
-        const res = await (await fetch(`/comments/${commentId}`,{
-            method: "PUT",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({content: '------------ comment content here ------------'})
-        })).json();
+        //to hide menu after clicking 
+        e.target.parentNode.classList.add("hidden");
+        
+        if(!saveOpen){
+            //create elements
+            const textbox = commentBox.childNodes[4];
+            const editBox = document.createElement("div");
+            editBox.classList.add("edit-box");
+            const editTextarea = document.createElement("textarea");
+            editTextarea.value = textbox.innerText;
+            editTextarea.autofocus = true;
+            const saveBtn = document.createElement("button");
+            saveBtn.innerText = "Save";
+            saveOpen = true;
+
+            //add event listener to save button to send PUT req
+            saveBtn.addEventListener("click", async e => {
+                const res = await fetch(`/comments/${commentId}`,{
+                    method: "PUT",
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({content: editTextarea.value})
+                });
+                const { content } = await res.json();
+                textbox.innerText = content;
+                saveOpen = false;
+                editBox.parentNode.removeChild(editBox);
+            })
+
+            //combine elements and append to comment box 
+            editBox.append(editTextarea, saveBtn);
+            commentBox.append(editBox);
+
+        }
+        
+
+  
+
+        
     });
 
     deleteButton.addEventListener('click', async e => {
         console.log("BEFORE DELETE, DELETING COMMENT", commentId);
-        const commentBox = document.querySelector(`div[data-comment-id="${commentId}"]`)
         commentBox.parentNode.removeChild(commentBox);
         //actually delete it in the database now
         await fetch(`/comments/${commentId}`,{
@@ -30,7 +65,7 @@ const addEditDeleteListener = (editButton, deleteButton, commentId) => {
 }
 const addMenuEventListener = (menuButton) => {
     menuButton.addEventListener("click", e => {
-        console.dir(e.target);
+        // console.dir(e.target);
         // console.dir(e.target.parentElement);
         const menu = e.target.parentElement.childNodes[2];
         menu.classList.toggle("hidden");
@@ -55,18 +90,19 @@ const renderComment = (userName, createdAt, content, likes, commentId) => {
     newCommentLikeButton.classList.add("far", "fa-heart");
     const newCommentMenuButton = document.createElement("i")
     newCommentMenuButton.classList.add("fas", "fa-ellipsis-h");
-    addMenuEventListener(newCommentMenuButton);
     const newCommentMenu = document.createElement('div');
     newCommentMenu.classList.add("edit-delete-comment", "hidden");
     const newCommentEdit = document.createElement("i");
     newCommentEdit.classList.add("fas", "fa-edit");
     const newCommentDelete = document.createElement("i");
     newCommentDelete.classList.add("fas", "fa-trash-alt");
-    addEditDeleteListener(newCommentEdit, newCommentDelete, commentId); 
     newCommentMenu.append(newCommentEdit, newCommentDelete);
-    newCommentUserContainer.append(newCommentUser, newCommentTimestamp);
-    newComment.append(newCommentUserContainer, newCommentContent, newCommentMenu, newCommentMenuButton);
+    newCommentUserContainer.append(newCommentUser);
+    newComment.append(newCommentUserContainer, newCommentTimestamp, newCommentMenu, newCommentMenuButton, newCommentContent);
     commentsDisplay.append(newComment);
+    
+    addMenuEventListener(newCommentMenuButton);
+    addEditDeleteListener(newCommentEdit, newCommentDelete, commentId); 
 }
 
 //**************To Add Event Listeners to page UPON LOADING******************/

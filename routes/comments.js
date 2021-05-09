@@ -41,7 +41,10 @@ router.put("/:commentId", asyncHandler(async (req, res) => {
 //Update the comment and send back the updated content for ajax rendering 
     const commentId = req.params.commentId
     const {content} = req.body;
-    console.log("PUT REQUEST RECEIIIIVED!! EDITING COMMENT", req.params.commentId );
+    const comment = await db.Comment.findByPk(commentId);
+    comment.update({content});
+    console.log("PUT REQUEST RECEIIIIVED!! EDITING COMMENT", comment.content);
+    res.json({content});
 }));
 
 router.delete("/:commentId", asyncHandler(async (req, res) => {
