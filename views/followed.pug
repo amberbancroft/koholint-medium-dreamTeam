@@ -1,0 +1,9 @@
+extends layout
+include utils.pug
+block content
+    h1(id="follower-heading") Your Currently  Following
+    div(id="followers-list")
+        ul(id="ul")
+                each person in following
+                    if person.followed
+                        li= person.followed.userName

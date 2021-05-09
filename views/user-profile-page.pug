@@ -3,26 +3,28 @@ include utils.pug
 append head
     script(async defer src="/javascripts/user-profile.js")
 block content
-    div(id='user-name')
-        h1= `${currentUser.firstName } ${currentUser.lastName }`
+    div(id='user-name-div')
+        h1(id='user-name')= `${currentUser.firstName } ${currentUser.lastName }`
         div(id='follow-bar')
             if !boolean && loggedIn
-                button(id='follow-button' class='green-btn-follow' type='submit' data-Value=pageId) Follow
+                button(id='follow-button' class='green-btn-follow' type='submit' data-Value=pageId) Follow 
             else if !loggedIn
                 button(class='green-btn'): a(href='/users/login') Follow
-            button(id='followers-btn', class='text-only'): a(href=`/users/${pageId}/followers`) Followers
+            button(id='followers-btn', class='text-only'): a(href=`/users/${pageId}/following`)  Following #{countOfUsersFollowing}
+            button(id='followers-btn', class='text-only'): a(href=`/users/${pageId}/followers`)  Followers #{countOfFollowers}
             button(id='story-btn', class='text-only'): a(href='/stories') Stories
             if boolean
                 button(id='edit-btn', class='text-only'): a(href=`/users/${user.id}/edit`) Edit
         div(class='hl')
-        //- Added this if conditional to render img ONLY if it exists
-        if currentUser.imageUrl
-          img(src=`${currentUser.imageUrl}`)
-        div
-            h1(id='bio-box')= `About ${currentUser.firstName } ${currentUser.lastName }`
-            h3=`${currentUser.bio}`
+        div(id='profile-container')
+            div(id='image-container')
+                if currentUser.imgUrl
+                    img(id='profile-image' src=`${currentUser.imgUrl}`)
+            div(id='bio-container')
+                if currentUser.bio
+                    h1(id='bio-box')= `About ${currentUser.firstName } ${currentUser.lastName }`
+                    h3(id='profile-bio')=`${currentUser.bio}`
         div(class='hl')
         div
             h2(id='date')= `Member Since ${currentUser.createdAt}`
-            h5(id='follow')= 'Followers ~ Following'
-            //- form(action=`/users/${pageId}` method='post')
+            h5(id='follow')= `  Following ${countOfUsersFollowing} ~  Followers ${countOfFollowers}`
