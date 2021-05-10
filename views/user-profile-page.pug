@@ -7,7 +7,10 @@ block content
         h1(id='user-name')= `${currentUser.firstName } ${currentUser.lastName }`
         div(id='follow-bar')
             if !boolean && loggedIn
-                button(id='follow-button' class='green-btn-follow' type='submit' data-Value=pageId) Follow 
+              if currentUser.following
+                button(id='follow-button' class='green-btn-follow' type='submit' data-Value=pageId) Following 
+              else 
+                button(id='follow-button' class='green-btn-follow' type='submit' data-Value=pageId) Follow
             else if !loggedIn
                 button(class='green-btn'): a(href='/users/login') Follow
             button(id='followers-btn', class='text-only'): a(href=`/users/${pageId}/following`)  Following #{countOfUsersFollowing}

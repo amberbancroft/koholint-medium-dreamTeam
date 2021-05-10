@@ -1,9 +1,8 @@
-console.log("hi")
 const followButtons = document.querySelectorAll('.green-btn-follow')
 followButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (btn.innerHTML === "Follow") {
+    btn.addEventListener('click', (e) => {  
+        console.log("clicked");
+        if (btn.innerText === "Follow") {
             fetch(`/users/${btn.dataset.value}`, {
                 method: "PATCH",
             }).then(function(res) {

@@ -57,7 +57,7 @@ block content
                     img(src="/images/profile-icon.png")
                 a(href=`/users/${user.id}`): div(class="follow-user-text")
                   p(class="follow-user-name") #{user.firstName} #{user.lastName}
-                  p(class="follow-user-bio") Bio info here asdfasdfasdfasfdasdfasasdfasdfasdfasdfasdfasddfasfa
+                  p(class="follow-user-bio")= user.bio
                 div(class="follow-user-btn")
                   if user.following
                     button(class="green-btn-follow" data-Value=user.id) Following 

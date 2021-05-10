@@ -160,7 +160,12 @@ router.get(
   asyncHandler(async (req, res, next) => {
     //variable declarations
     const userId = parseInt(req.params.id,10);
-    const currentUser = await db.User.findByPk(userId);
+    const currentUser = await db.User.findByPk(userId, {
+      include: {
+        model: db.Follow,
+        as: 'followed'
+      }
+    });
     let boolean = false;
     let loggedIn = false;
 
@@ -168,6 +173,13 @@ router.get(
     if(req.session.auth) {
       boolean = userId === req.session.auth.userId;
       loggedIn = true;
+      //Check to see if you are following this user
+      let followers = currentUser.followed;
+      for(let follower of followers){
+        if(follower.followerId === req.session.auth.userId){
+          currentUser.following = true;
+        }
+      }
     }
 
     //Rendering followers
@@ -223,7 +235,7 @@ router.get(
     if(req.session.auth) {
       boolean = userId === req.session.auth.userId;
     }
-
+console.log("AM I FOLLOWING THIS PERSON???", currentUser.following);
     res.render("user-profile-page-edit", {
       title: "Edit Profile Page",
       currentUser,

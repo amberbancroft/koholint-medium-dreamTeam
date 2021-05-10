@@ -146,6 +146,7 @@
 }
 .follow-user-box a{
   text-decoration: none;
+  flex-basis: 60%;
 }
 .follow-user-img{
   width: 50px;
