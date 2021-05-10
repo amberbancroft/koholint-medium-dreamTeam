@@ -16,6 +16,9 @@ module.exports = {
       imgUrl: {
         type: Sequelize.STRING(255),
       },
+      bio: {
+        type: Sequelize.STRING(255),
+      },
       firstName: {
         allowNull: false,
         type: Sequelize.STRING(50)

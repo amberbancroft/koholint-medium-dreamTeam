@@ -5,6 +5,7 @@ const image = document.querySelector('#imageUrl');
 
 //Save button
 saveButton.addEventListener('click', async (e) => {
+    console.log(image.value);
     const res = await fetch(window.location.href, {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},

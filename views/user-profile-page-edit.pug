@@ -4,18 +4,18 @@ append head
   script(src="/javascripts/user-edit.js" type="module" defer)
 block content
     if boolean
-        div(id='user-name')
-            h1= `${currentUser.firstName } ${currentUser.lastName }`
+        div(id='user-name-div')
+            h1(id='user-name')= `${currentUser.firstName } ${currentUser.lastName }`
             div(id='follow-bar')
-                button(id='followers-btn', class='text-only'): a(href='/') Followers
-                button(id='story-btn', class='text-only'): a(href='/stories') Stories
+                //- button(id='followers-btn', class='text-only'): a(href=`/users/${pageId}/following`) Following
+                //- button(id='followers-btn', class='text-only'): a(href=`/users/${pageId}/followers`) Followers
+                //- button(id='story-btn', class='text-only'): a(href='/stories') Stories
                 button(id='save-btn' class='green-btn') Save
             div(class='hl')
-            p Insert Picture Here
-            input(id='imageUrl', type="text") 
-            h1= `About ${currentUser.firstName } ${currentUser.lastName }`
-            textarea(id='bio', name="bio", cols="60", rows="10")
+            input(id='imageUrl', type="text", placeholder='Please insert picture URL') 
+            h1(id='bio-box')= `About ${currentUser.firstName } ${currentUser.lastName }`
+            textarea(id='bio', name="bio", cols="60", rows="10", placeholder='Please type bio...')
             div(class='hl')
             div 
                 h2(id='date')= `Member Since ${currentUser.createdAt}`
-                h5(id='follow')= 'Followers ~ Following'
+                //- h5(id='follow')= `  Following  ~ ${currentUser.followers} Followers`

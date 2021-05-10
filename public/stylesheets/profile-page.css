@@ -1,61 +1,65 @@
-#story-btn{
-    background-color: white;
-}
-
-.green-btn {
-    background-color: green;
-    color: white;
-}
-
-.green-btn-follow {
-    background-color: green;
-    color: white; 
-}
-
-.green-btn:hover {
-    background-color: black;
-    color: white;
-    transition: 0.5s;
-}
-
-
-
-
-#followers-btn{
-    background-color: white;
-}
-
-#edit-btn{
-    background-color: white;
-}
-
-
-#user-name {
-    margin: 50px 0px 20px 15px;
-}
-
-#follow-bar{
-    padding: 15px;
-}
-
+/* large computer screen  */
 .hl {
     /* height: 5px; */
     width: 100%;
     background-color: lightgray;
     border: .2px solid rgb(187, 186, 186);
 }
-
+#story-btn{
+    background-color: white;
+}
+.green-btn {
+    background-color: green;
+    color: white;
+}
+.green-btn-follow {
+    background-color: green;
+    color: white; 
+}
+.green-btn:hover {
+    background-color: black;
+    color: white;
+    transition: 0.5s;
+}
+#followers-btn{
+    background-color: white;
+}
+#edit-btn{
+    background-color: white;
+}
 #date {
     color: rgb(153, 151, 151);
+    padding: 10px 0px 10px 5px;
 }
-
 #follow {
     color: green;
+    padding:3px 0px 0px 15px;
 }
-
+#profile-image {
+    padding: 15px 0px 15px 10px;
+    width: 400px;
+}
+#user-name {
+    margin: 10px 0px 20px 15px;
+}
+#follow-bar{
+    padding: 15px;
+}
 #bio-box{
-    padding: 30px 0px 30px 20px;
+    padding: 30px 15px 20px 20px;
 }
-
-
-
+#profile-bio {
+    padding: 0px 0px 30px 20px;
+}
+#user-name-div{
+    display: grid;
+    justify-content: center;
+    padding: 60px 0px;
+}
+#profile-container{
+    display: flex;
+    justify-content: center;
+}
+#imageUrl{
+    padding: 10px 0px 10px 5px;
+}
