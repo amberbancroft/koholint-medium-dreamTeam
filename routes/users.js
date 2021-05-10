@@ -170,16 +170,42 @@ router.get(
       loggedIn = true;
     }
 
-    //Image and bio conditional
-    // if(){
+    //Rendering followers
+    const followedId = userId;
+    const followers = await db.Follow.findAll({
+      where: {
+        followedId
+      },
+      include: {
+        model: db.User,
+        as: 'followers'
+      }
+  
+    });
 
-    // }
+    const followerId = userId;
+    const following = await db.Follow.findAll({
+      where: {
+        followerId
+      },
+      include: {
+        model: db.User,
+        as: 'followed'
+      }
+  
+    });
+  
+    countOfFollowers = followers.length;
+    countOfUsersFollowing = following.length;
+
     res.render("user-profile-page", {
       title: "Profile Page",
       currentUser,
       boolean,
       pageId: userId,
       loggedIn,
+      followers,
+      following
     });
   })
 );
@@ -203,7 +229,8 @@ router.get(
       currentUser,
       csrfToken: req.csrfToken(),
       boolean,
-      loggedIn,
+      pageId: userId,
+      // loggedIn,
     });
   })
 );
@@ -211,9 +238,19 @@ router.get(
 router.patch(
   "/:id(\\d+)/edit",
   asyncHandler(async (req, res, next) => {
-
+    //Variable Declaration
+    const { imgUrl, bio } = req.body;
     const userId = parseInt(req.params.id,10);
-    res.json({userId})
+    const currentUser = await db.User.findByPk(userId);
+
+    await currentUser.update({
+      imgUrl,
+      bio
+    });
+
+    await currentUser.save();
+
+    res.json({userId});
   })
 );
 
@@ -285,11 +322,37 @@ router.get('/:id(\\d+)/followers', asyncHandler(async(req, res) => {
     }
 
   });
+
+  countOfFollowers = followers.length;
+  console.log('Count', countOfFollowers);
+  console.log('followwweeeerrssss',followers);
   res.render('followers', {
     followers
   })
 }));
 
+router.get('/:id(\\d+)/following', asyncHandler(async(req, res) => {
+  const userId = parseInt(req.params.id,10);
+  const followerId = userId;
+  const following = await db.Follow.findAll({
+    where: {
+      followerId
+    },
+    include: {
+      model: db.User,
+      as: 'followed'
+    }
+
+  });
+
+  countOfUsersFollowing = following.length;
+  console.log('Count', countOfUsersFollowing);
+  console.log('following********', following)
+
+  res.render('followed', {
+    following
+  })
+}));
 
 //Exports
 module.exports = router;
