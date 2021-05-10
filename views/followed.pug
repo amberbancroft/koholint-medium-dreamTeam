@@ -1,9 +1,13 @@
 extends layout
 include utils.pug
 block content
-    h1(id="follower-heading") Your Currently  Following
-    div(id="followers-list")
-        ul(id="ul")
-                each person in following
-                    if person.followed
-                        li= person.followed.userName
+    div(class='follow-container')
+        h1(class="follow-heading") Following
+        each person in following
+            div(class='person-con')
+                div(class='person-con-img-name')
+                    div(class="img-container"): img(src=person.followed.imgUrl, alt="")
+                    div(class='person-con-name')
+                        p= person.followed.userName
+                div(class='person-con-button')
+                    button(id='follow-button' class='green-btn-follow' type='submit' data-Value=pageId) Following
