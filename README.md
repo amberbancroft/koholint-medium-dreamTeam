@@ -30,10 +30,9 @@
   * Heroku application platform
 
 ## Application Architecture
-The Avocati frontend was built entirely with vanilla JavaScript and CSS. We used a combination of form inputs and the Fetch API to provide a fully functional CRUD experience to our users. By utilizing Ajax we are also able to provide a seamlessly integrated experience to our users when they make comments, like stories, or follow other users.
 
 ### Frontend Overview
-The frontend of Avocati
+The Avocati frontend was built entirely with vanilla JavaScript and CSS. We used a combination of form inputs and the Fetch API to provide a fully functional CRUD experience to our users. By utilizing Ajax we are also able to provide a seamlessly integrated experience to our users when they make comments, like stories, or follow other users.
 ### Backend Overview
 The Express backend is a collection of frontend routes and RESTful API routes that serve data to the frontend through Pug.js templating. The application data is stored in a Postgres database. All backend CRUD operations are performed through our Node environment with Sequelize. 
 ## Conclusion
