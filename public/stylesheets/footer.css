@@ -1,0 +1,29 @@
+footer{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    bottom: 0px;
+    background: #52734d;
+    border-top: 2px solid black;;
+    padding: 10px;
+}
+
+footer div{
+    display: flex;
+}
+footer div:hover{
+    opacity: 50%;
+}
+
+footer a {
+    text-decoration: none;
+}
+footer i {
+    padding-bottom: 5px;
+    margin-left: 20px;
+}
+footer h1 {
+    margin-top: 5px;
+}

@@ -8,25 +8,82 @@ const router = express.Router();
 
 const getTenStories = async () => {
   const allStories = await db.Story.findAll();
-  return allStories.slice(0,10);
+  const randomSelection = [];
+  const storiesToDisplay = [];
+  while (randomSelection.length !== allStories.length){
+    if(randomSelection.length === 10) break;
+    let randomNum = Math.floor(Math.random() * allStories.length);
+    if(randomSelection.includes(randomNum)) continue; 
+    randomSelection.push(randomNum);
+  }
+  for(let num of randomSelection){
+    storiesToDisplay.push(allStories[num]);
+  }
+
+  return storiesToDisplay;
 }
 
+const getThreeUsers = async (req, limit, usersToDisplay = []) => {
+
+  const allUsers = await db.User.findAll({
+    include: {
+      model: db.Follow,
+      as: 'followed'
+    }
+  });
+  const randomNums = [];
+  let currentLoggedInUser = null;
+  while(randomNums.length !== allUsers.length){
+    if(randomNums.length === limit) break;
+    if(usersToDisplay.length === limit) break;
+    let randomNum = Math.floor(Math.random() * allUsers.length);
+    if(currentLoggedInUser == randomNum)continue;
+    if(randomNums.includes(randomNum)) continue;
+    randomNums.push(randomNum);
+  }
+  for(let num of randomNums){
+    usersToDisplay.push(allUsers[num]);
+  }
+  if(req.session.auth){
+    currentLoggedInUser = req.session.auth.userId;
+  }
+  for(let i = 0; i < usersToDisplay.length; i++){
+    let user = usersToDisplay[i];
+    if(user.id === currentLoggedInUser){
+      usersToDisplay.splice(i, 1);
+    }
+  }
+
+  return usersToDisplay;
+}
 
 /* GET home page. */
 router.get("/", asyncHandler(async (req, res, next) => {
   const storiesToRender = await getTenStories();
+  const usersToRender = await getThreeUsers(req, 3);
+  storiesToRender.forEach(story => story.timestamp = timestampShortener(story.createdAt));
   const firstSixStories = storiesToRender.slice(0,6);
   firstSixStories.forEach((story,i) => story.number = i+1);
   const lastFourStories = storiesToRender.slice(6);
   let user;
   if(req.session.auth){
     user = await db.User.findByPk(req.session.auth.userId);
+    for(let currentUser of usersToRender){
+      let followers = currentUser.followed;
+      for(let follower of followers){
+        if(follower.followerId === user.id){
+          currentUser.following = true; //set a property that shows loggedin user is following
+        }
+      }
+    }
   }
+  // console.log("*******EDITED USER**********", usersToRender[0]);
   res.render("index", {
     title: "Home",
     authenticated: res.locals.authenticated,
     topStories: firstSixStories,
     otherStories: lastFourStories,
+    usersToRender,
     user
   });
 }));

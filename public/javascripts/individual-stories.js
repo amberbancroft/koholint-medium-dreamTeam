@@ -24,6 +24,7 @@ const addEditDeleteListener = (editButton, deleteButton, commentId) => {
             editTextarea.value = textbox.innerText;
             editTextarea.autofocus = true;
             const saveBtn = document.createElement("button");
+            saveBtn.classList.add("green-btn-follow");
             saveBtn.innerText = "Save";
             saveOpen = true;
 

@@ -30,16 +30,16 @@ block content
         div(class="landing-top-story")
           div(class="trending-number")
             p= `0${story.number}`
-          div 
+          div(class="landing-top-story__title") 
             a(href=`/${story.id}` class="landing-top-story-title")= story.title
-            p(class="landing-top-story-timestamp")= story.createdAt
+            p(class="landing-top-story-timestamp")= story.timestamp
   div(class="other-content")
     div(class="landing-other-stories")
       each story in otherStories
         div(class="landing-other-story")
           div(class="landing-other-story-textbox")
             a(href=`/${story.id}` class="landing-other-story-title")= story.title
-            p(class="landing-other-story-timestamp")= story.createdAt
+            p(class="landing-other-story-timestamp")= story.timestamp
           div(class="landing-other-story-imgbox")
             img(class="other-story-img" src=story.imgUrl, alt="story-photo.png")
     div(class="other-follow")
@@ -48,9 +48,21 @@ block content
           p Start following users by clicking the "Follow" button
         div(class="other-follow-div")
           div(class="other-follow-people")
-            p ***PLACEHOLDER TEXT***
-            p ***PLACEHOLDER TEXT***
-            p ***PLACEHOLDER TEXT***
+            each user in usersToRender
+              div(class="follow-user-box")
+                div(class="follow-user-img")
+                  if user.imgUrl
+                    img(src=user.imgUrl)
+                  else 
+                    img(src="/images/profile-icon.png")
+                a(href=`/users/${user.id}`): div(class="follow-user-text")
+                  p(class="follow-user-name") #{user.firstName} #{user.lastName}
+                  p(class="follow-user-bio") Bio info here asdfasdfasdfasfdasdfasasdfasdfasdfasdfasdfasddfasfa
+                div(class="follow-user-btn")
+                  if user.following
+                    button(class="green-btn-follow" data-Value=user.id) Following 
+                  else 
+                    button(class="green-btn-follow" data-Value=user.id) Follow 
           //- import 3 users and populate them here
     //- designing page for now to exclude the container the suggests topics to follow, 
     //- will need to change layout of "landing-other-stories once we get there"
