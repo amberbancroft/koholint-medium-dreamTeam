@@ -39,6 +39,9 @@
   transition: 0.5s;
 }
 
+.demo {
+  margin-left: 20px;
+}
 /* TRENDING SECTION */
 .trending {
   /* display: flex;
@@ -52,7 +55,6 @@
 
 .landing-top-stories {
   margin: auto;
-  height: 30vh;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border-bottom: 1px solid gray;
@@ -60,8 +62,9 @@
 
 .landing-top-story {
   display: flex;
+  padding: 20px 0 20px 70px;
   /* flex-direction: column; */
-  justify-content: center;
+  /* justify-content: center; */
   /* align-items: center; */
 }
 
@@ -77,7 +80,9 @@
   flex-direction: column;
   justify-content: center;
 }
-
+.landing-top-story__title{
+  /* width: 300px; */
+}
 .landing-top-story-timestamp {
   font-size: 10px;
 }
@@ -128,11 +133,46 @@
 
 .other-follow-text,
 .other-follow-div {
-  background: #feffde;
+  background: #f0ebcc;
   margin: 20px;
   padding: 20px;
 }
 
 .other-follow-text h3 {
   font-weight: bold;
+}
+.follow-user-box{
+  display: flex;
+}
+.follow-user-box a{
+  text-decoration: none;
+}
+.follow-user-img{
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 15px;
+
+}
+.follow-user-img > img{
+  width: 100%;
+}
+.follow-user-text{
+  /* width: 60%; */
+}
+.follow-user-name{
+  font-weight: bold;
+}
+.follow-user-bio{
+  color: gray;
+  font-size: 10px;
+  overflow: hidden;
+  white-space: nowrap;  
+  text-overflow: ellipsis;
+}
+.follow-user-btn{
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
 }

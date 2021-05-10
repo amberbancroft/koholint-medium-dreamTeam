@@ -6,7 +6,8 @@ block content
         div(id="individual-story-title")
             h1 #{story.title}
         div(id="story-user")
-            p Created By: #{user.userName}
+            p Created By: 
+              span: a(href=`/users/${user.id}`) #{user.userName}
         if story.imgUrl
             div(id="img-div")
                 img(id="image" src=`${story.imgUrl}`)
@@ -25,17 +26,22 @@ block content
                 form(class="comment-form" data-Value=pageId)
                   textarea(id="comment-content" name='comment-content' placeholder="What are your thoughts?" rows="5" cols="35")
                   div
-                    button Respond
+                    button(class="green-btn-follow") Respond
             div(class="comment-section comments-display")
                 each comment in story.Comments 
-                  div(class="single-comment-box")
-                    div(class="single-comment-box__user")
+                  div(class="single-comment-box" data-comment-id=comment.id)
+                    div(class="single-comment-box__user" data-id=comment.User.id)
                       p= comment.User.userName
-                      p= comment.createdAt
-                    p= comment.content
+                    if (loggedInUserId === comment.User.id)
+                      i(class="fas fa-ellipsis-h")
+                      div(class="edit-delete-comment hidden" data-comment-id=comment.id)
+                        i(class="fas fa-edit" data-comment-id=comment.id)
+                        i(class="fas fa-trash-alt" data-comment-id=comment.id)
+                    p(class="posted-comment-timestamp")= comment.timestamp
+                    p(class="posted-comment-content" data-comment-id=comment.id)= comment.content
     if isCurrentUsersStory
         div(id="button-container")
-            button(class='edit-btn'): a(href=`/${story.id}/edit` class="edit-redirect") Edit Story
+            button(class='edit-btn green-btn-follow'): a(href=`/${story.id}/edit` class="edit-redirect") Edit Story
             form(action=`/${story.id}` method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
-                button(class='btn' type='submit') Delete Story
+                button(class='btn-delete' type='submit') Delete Story

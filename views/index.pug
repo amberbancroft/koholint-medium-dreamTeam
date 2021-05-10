@@ -7,16 +7,22 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  if auth
-    div(class="auth-landing") AUTH LANDING CONTENT HERE
-  else 
-    div(class="landing-header-container")
-      div(class="landing-header-content")
+  div(class="landing-header-container")
+    div(class="landing-header-content")
+      if authenticated
+        div(class="landing-header-text-box")
+          h1(class="landing-header-text") Welcome Back, #{user.firstName}
+          p Start sharing your passions 
+            span: a(href="/story-new") here
+        div(class="landing-header-img-div")
+        button(class='landing-button'): a(href=`/users/${user.id}`) My Profile
+      else 
         div(class="landing-header-text-box")
           h1(class="landing-header-text") Where good ideas find you
           p Read and share new perspectives on just about any to hobby. Everyone's welcome.
         div(class="landing-header-img-div")
         button(class="landing-button"): a(href="/users/signup") Get Started
+        button(class="landing-button demo"): a(href="/users/demo") Demo
   section(class="trending")
     h2(class="trending-text") Trending on Avocati
     div(class="landing-top-stories")
@@ -24,16 +30,16 @@ block content
         div(class="landing-top-story")
           div(class="trending-number")
             p= `0${story.number}`
-          div 
+          div(class="landing-top-story__title") 
             a(href=`/${story.id}` class="landing-top-story-title")= story.title
-            p(class="landing-top-story-timestamp")= story.createdAt
+            p(class="landing-top-story-timestamp")= story.timestamp
   div(class="other-content")
     div(class="landing-other-stories")
       each story in otherStories
         div(class="landing-other-story")
           div(class="landing-other-story-textbox")
             a(href=`/${story.id}` class="landing-other-story-title")= story.title
-            p(class="landing-other-story-timestamp")= story.createdAt
+            p(class="landing-other-story-timestamp")= story.timestamp
           div(class="landing-other-story-imgbox")
             img(class="other-story-img" src=story.imgUrl, alt="story-photo.png")
     div(class="other-follow")
@@ -42,9 +48,21 @@ block content
           p Start following users by clicking the "Follow" button
         div(class="other-follow-div")
           div(class="other-follow-people")
-            p ***PLACEHOLDER TEXT***
-            p ***PLACEHOLDER TEXT***
-            p ***PLACEHOLDER TEXT***
+            each user in usersToRender
+              div(class="follow-user-box")
+                div(class="follow-user-img")
+                  if user.imgUrl
+                    img(src=user.imgUrl)
+                  else 
+                    img(src="/images/profile-icon.png")
+                a(href=`/users/${user.id}`): div(class="follow-user-text")
+                  p(class="follow-user-name") #{user.firstName} #{user.lastName}
+                  p(class="follow-user-bio") Bio info here asdfasdfasdfasfdasdfasasdfasdfasdfasdfasdfasddfasfa
+                div(class="follow-user-btn")
+                  if user.following
+                    button(class="green-btn-follow" data-Value=user.id) Following 
+                  else 
+                    button(class="green-btn-follow" data-Value=user.id) Follow 
           //- import 3 users and populate them here
     //- designing page for now to exclude the container the suggests topics to follow, 
     //- will need to change layout of "landing-other-stories once we get there"

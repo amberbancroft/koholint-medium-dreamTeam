@@ -140,6 +140,13 @@ router.post("/login", csrfProtection, loginvalidators, asyncHandler(async(req, r
     csrfToken: req.csrfToken(),
   });
 }));
+//Demo Login - API route that can only be requested via Demo button
+router.get("/demo", asyncHandler(async(req,res) => {
+  const demoUser = await db.User.findByPk(1);
+  loginUser(req, res, demoUser);
+  req.session.save(() => res.redirect("/"))
+}))
+
 
 //Logout
 router.get('/logout', (req, res) => {

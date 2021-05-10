@@ -16,6 +16,11 @@
     background-color: green;
     color: white; 
 }
+.green-btn-follow:hover{
+    background-color: black;
+    color: white;
+    transition: 0.5s;
+}
 .green-btn:hover {
     background-color: black;
     color: white;

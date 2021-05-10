@@ -39,10 +39,21 @@
 .edit-redirect {
     font-size: 13.5px;
 }
-
+.btn-delete{
+    background-color: red;
+    color:white;
+}
+.btn-delete:hover{
+    background-color: black;
+    color: white;
+    transition: 0.5s;
+}
+#button-container button {
+    margin: 10px;
+}
 /********COMMENT STYLING************/
 .story-comment:hover,
-#like-button:hover{
+#like-button:hover, i:hover{
     opacity: 0.5;
     transition: .2s;
     transition-timing-function: cubic-bezier(0, 1.56, 1, 1.03);
@@ -67,12 +78,13 @@
     align-items: center;
     overflow: auto;
 }
-/* .hidden{
+.comment-section {width: 90%;}
+.hidden{
     transform: translate(30vw);
-} */
+}
 .comment-exit{
   display: flex;
-  width: 90%;
+  /* width: 90%; */
   justify-content: space-between;
 }
 .comment-exit i {
@@ -84,14 +96,17 @@
 }
 .comment-form{
     box-shadow: 0px 0px 20px lightgray;
+    overflow: hidden;
+    margin-bottom: 10px
 }
-#comment-content{
+textarea{
     resize: none;
     border: none;
 }
 #comment-content:focus{
     outline:none;
 }
+
 .comment-form div{
     width: 100%;
     height: 40px;
@@ -100,4 +115,73 @@
 .comment-form button{
     position: absolute;
     right: 10px;
+}
+/******** POSTED COMMENTS ********/
+.single-comment-box{
+    position: relative;
+
+    margin: 20px 0;
+    /* box-shadow: 0px 0px 20px lightgray; */
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(auto-fill, 20px);
+    grid-template-areas: "username username menu"
+                         "timestamp timestamp timestamp"
+                         "content content content"
+                         "content content content";
+}
+.single-comment-box__user{
+    color: rgb(70, 70, 70);
+    grid-area: username;
+    align-self: start;
+}
+.single-comment-box i {
+    padding: 10px;
+    grid-area: menu;
+    justify-self: end;
+    align-self: start;
+    cursor: pointer;
+}
+.posted-comment-timestamp {
+    grid-area: timestamp;
+    color: gray;
+    font-size: 10px;
+} 
+.posted-comment-content {
+    grid-area: content;
+    color: black;
+}
+.single-comment-box p {
+    margin: 10px;
+    overflow-wrap: break-word;
+}
+
+.edit-delete-comment{
+    position: absolute;
+    right: 0px;
+    top: 38px;
+    box-shadow: 0px 0px 20px lightgray;
+    background-color: white;
+}
+
+.edit-delete-comment.hidden{
+    display: none;
+}
+
+.edit-box {
+    position: absolute;
+    background: white;
+    width: 100%;
+    height: 60%;
+    bottom: 10px;
+    left: 10px;
+}
+.edit-box textarea {
+    height: 100%;
+}
+.edit-box textarea:focus{
+    outline: none;
+    /* border: 1px solid black; */
 }
