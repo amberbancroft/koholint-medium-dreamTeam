@@ -1,5 +1,7 @@
 extends layout
 include utils.pug
+append head
+    script(async defer src="/javascripts/followers.js")
 block content
     div(class='follow-container')
         h1(class="follow-heading") Followers
@@ -10,4 +12,4 @@ block content
                     div(class='person-con-name')
                         p= person.followers.userName
                 div(class='person-con-button')
-                    button(id='follow-button' class='green-btn-follow' type='submit' data-Value=pageId) Follow
+                    button(id='follow-button' class='green-btn-follow' type='submit' data-Value=pageId data-Follow=person.followerId) Follow

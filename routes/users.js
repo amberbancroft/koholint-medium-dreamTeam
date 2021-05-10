@@ -180,7 +180,7 @@ router.get(
         model: db.User,
         as: 'followers'
       }
-  
+
     });
 
     const followerId = userId;
@@ -192,9 +192,9 @@ router.get(
         model: db.User,
         as: 'followed'
       }
-  
+
     });
-  
+
     countOfFollowers = followers.length;
     countOfUsersFollowing = following.length;
 
@@ -312,6 +312,7 @@ router.delete('/:id(\\d+)', asyncHandler(async(req, res) => {
 router.get('/:id(\\d+)/followers', asyncHandler(async(req, res) => {
   const userId = parseInt(req.params.id,10);
   const followedId = userId;
+
   const followers = await db.Follow.findAll({
     where: {
       followedId
@@ -320,16 +321,35 @@ router.get('/:id(\\d+)/followers', asyncHandler(async(req, res) => {
       model: db.User,
       as: 'followers'
     }
-
   });
-
   countOfFollowers = followers.length;
-  console.log('Count', countOfFollowers);
-  console.log('followwweeeerrssss',followers);
   res.render('followers', {
-    followers
+    followers,
+    pageId: userId,
   })
 }));
+
+router.patch('/:id(\\d+)/followers', asyncHandler(async(req, res) => {
+  const followerId = req.session.auth.userId;
+  const followedId = req.body.followId;
+  await db.Follow.create({
+    followerId,
+    followedId,
+  })
+  res.json({status:res.status.ok});
+}))
+
+router.delete('/:id(\\d+)/followers', asyncHandler(async(req, res) => {
+  const followerId = req.session.auth.userId;
+  const followedId = req.body.followId;
+  await db.Follow.destroy({
+    where: {
+      followerId,
+      followedId
+    }
+  })
+  res.json({status:res.status.ok});
+}))
 
 router.get('/:id(\\d+)/following', asyncHandler(async(req, res) => {
   const userId = parseInt(req.params.id,10);
