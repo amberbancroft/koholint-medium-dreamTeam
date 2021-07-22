@@ -169,6 +169,14 @@ router.get(
     let boolean = false;
     let loggedIn = false;
 
+    //Added 404 page for users profiles that arent found
+    if (currentUser === null){
+      return res.render('error', {
+        message: "404 BAD URL, User Does Not Exist, Cannot Load Profile"
+      })
+    }
+
+
     //if defined
     if(req.session.auth) {
       boolean = userId === req.session.auth.userId;
