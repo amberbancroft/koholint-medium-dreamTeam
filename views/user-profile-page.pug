@@ -8,14 +8,14 @@ block content
         div(id='follow-bar')
             if !boolean && loggedIn
               if currentUser.following
-                button(id='follow-button' class='green-btn-follow' type='submit' data-Value=pageId) Following 
-              else 
+                button(id='follow-button' class='green-btn-follow' type='submit' data-Value=pageId) Following
+              else
                 button(id='follow-button' class='green-btn-follow' type='submit' data-Value=pageId) Follow
             else if !loggedIn
                 button(class='green-btn'): a(href='/users/login') Follow
             button(id='followers-btn', class='text-only'): a(href=`/users/${pageId}/following`)  Following #{countOfUsersFollowing}
             button(id='followers-btn', class='text-only'): a(href=`/users/${pageId}/followers`)  Followers #{countOfFollowers}
-            button(id='story-btn', class='text-only'): a(href='/stories') Stories
+            button(id='story-btn', class='text-only'): a(href=`/stories/${currentUser.id}`) Stories
             if boolean
                 button(id='edit-btn', class='text-only'): a(href=`/users/${user.id}/edit`) Edit
         div(class='hl')

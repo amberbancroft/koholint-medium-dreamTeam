@@ -243,7 +243,7 @@ router.get(
     if(req.session.auth) {
       boolean = userId === req.session.auth.userId;
     }
-console.log("AM I FOLLOWING THIS PERSON???", currentUser.following);
+
     res.render("user-profile-page-edit", {
       title: "Edit Profile Page",
       currentUser,
@@ -386,13 +386,13 @@ router.get('/:id(\\d+)/following', asyncHandler(async(req, res) => {
   });
 
   countOfUsersFollowing = following.length;
-  console.log('Count', countOfUsersFollowing);
-  console.log('following********', following)
 
   res.render('followed', {
     following
   })
 }));
+
+
 
 //Exports
 module.exports = router;
