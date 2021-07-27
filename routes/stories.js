@@ -15,9 +15,12 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
     const currentUser = await db.User.findByPk(userId);
     const name = currentUser.userName;
 
-    if (req.session.auth.userId === userId){
+
+    if (req.session.auth && req.session.auth.userId === userId){
         isCurrentUser = true;
     }
+
+
 
     res.render("stories", {
         title: "Stories",
