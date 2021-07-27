@@ -6,7 +6,8 @@
     border: .2px solid rgb(187, 186, 186);
 }
 #story-btn{
-    background-color: white;
+    background-color: green;
+    color: white;
 }
 .green-btn {
     background-color: green;

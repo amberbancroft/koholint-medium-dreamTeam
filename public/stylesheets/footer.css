@@ -15,6 +15,8 @@ footer{
 footer .meet-container{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex: 1;
 }
 .main-link:hover{
     opacity: 50%;
