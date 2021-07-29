@@ -2,16 +2,17 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
   justify-content: center;
   align-items: center;
   background-color: white;
+  /* border: 1px solid black; */
 }
 
 .form-container {
   display: flex;
   background-color: #8db596;
-  width: 80%;
+  width: 30%;
+  height: 100%;
   /* height: 50vh; */
   justify-content: center;
   border-radius: 5px;
@@ -25,6 +26,7 @@
   align-items: center;
   box-shadow: 5px 5px 10px gray;
   width: 100%;
+  min-height: 20vh;
 }
 
 .input-label {
@@ -33,7 +35,7 @@
 
 .input-container {
   margin: 15px;
-  width: 80%;
+  width: 70%;
 }
 
 .login-input {
@@ -45,4 +47,27 @@
 
 .submit-div {
   padding-bottom: 10px;
+}
+
+.submit-div-login{
+  margin-bottom: 2%;
+}
+
+.login-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3vw;
+  height: 30vh;
+}
+
+.signup-question{
+  display: flex;
+  justify-content: center;
+  font-size: 1vw;
+  margin-top: 5%;
+}
+
+.sign-link{
+  font-size: 1vw;
 }
