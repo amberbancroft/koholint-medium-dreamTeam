@@ -5,14 +5,25 @@
   justify-content: center;
   align-items: center;
   background-color: white;
-  /* border: 1px solid black; */
 }
+
 
 .form-container {
   display: flex;
   background-color: #8db596;
   width: 30%;
   height: 100%;
+  /* height: 50vh; */
+  justify-content: center;
+  border-radius: 5px;
+  border: black solid 2px;
+}
+
+.signup-form-container {
+  display: flex;
+  background-color: #8db596;
+  width: 25vw;
+  min-height: 20vh;
   /* height: 50vh; */
   justify-content: center;
   border-radius: 5px;
@@ -28,6 +39,7 @@
   width: 100%;
   min-height: 20vh;
 }
+
 
 .input-label {
   display: block;
@@ -59,6 +71,14 @@
   align-items: center;
   font-size: 3vw;
   height: 30vh;
+}
+
+.signup-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3vw;
+  height: 20vh;
 }
 
 .signup-question{

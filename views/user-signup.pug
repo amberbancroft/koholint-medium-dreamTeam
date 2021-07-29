@@ -1,10 +1,12 @@
 extends layout
 include utils.pug
 block content
+  div(class="signup-title") Let's Sign Up!
   div(class='center-container')
-    div(class="form-container")
-      +validationErrorSummary(errors)
-      form(action="/users/signup" method="post")
+    div(class="signup-form-container")
+
+      form(class="login-form" action="/users/signup" method="post")
+        +validationErrorSummary(errors)
         input(type="hidden" name="_csrf" value=csrfToken)
         div(class="input-container")
           label(for="userName") Username:
