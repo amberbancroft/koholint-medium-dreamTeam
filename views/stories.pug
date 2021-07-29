@@ -1,6 +1,9 @@
 extends layout
 block content
-    h1(id="story-header") Your Amazing Stories
+    if isCurrentUser
+        h1(id="story-header") Your Amazing Stories
+    else
+        h1(id="story-header") Amazing Stories From #{name}
     div(class="story-items")
         each story in stories
             a(href=`/${story.id}`)

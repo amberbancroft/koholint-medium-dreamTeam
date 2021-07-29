@@ -13,7 +13,7 @@ const getTenStories = async () => {
   while (randomSelection.length !== allStories.length){
     if(randomSelection.length === 10) break;
     let randomNum = Math.floor(Math.random() * allStories.length);
-    if(randomSelection.includes(randomNum)) continue; 
+    if(randomSelection.includes(randomNum)) continue;
     randomSelection.push(randomNum);
   }
   for(let num of randomSelection){
@@ -98,6 +98,14 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
 
       {where: {id} , include: {model: Comment, include: [User, Like]}}
   );
+
+  //Added 404 page if story does not exist
+  if (story === null){
+    return res.render('error', {
+      message: "404 BAD URL, Story id does not exist",
+    })
+  }
+
   if (req.session.auth){
     loggedInUserId = req.session.auth.userId
     if (loggedInUserId === story.userId){
@@ -108,11 +116,11 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   //Adds a property 'timestamp' to each comment object which contains shortened date as string
   story.Comments.forEach(comment => {
     comment.timestamp = timestampShortener(comment.createdAt.toString());
-    console.log("EEEDDIDIIITTTED COMMMMENT", comment.timestamp);
   });
 
   const user = await db.User.findOne( {where: story.userId});
   const likes = await db.Like.findByPk(story.likesId);
+
     res.render('individual-stories', {
       csrfToken: req.csrfToken(),
       story,
@@ -134,7 +142,6 @@ router.patch('/:id(\\d+)', asyncHandler(async(req, res) => {
   const likes = await db.Like.findByPk(story.likesId);
   let likeCount = likes.likeCount;
   likeCount+=1;
-  console.log("THIIIIIIIIS", likeCount)
   await likes.update({
     likeCount,
   })
