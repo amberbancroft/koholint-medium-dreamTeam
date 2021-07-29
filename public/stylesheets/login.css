@@ -23,7 +23,7 @@
   display: flex;
   background-color: #8db596;
   width: 25vw;
-  min-height: 50vh;
+  min-height: 60vh;
   /* height: 50vh; */
   box-shadow: 5px 5px 10px gray;
   justify-content: center;
@@ -112,4 +112,11 @@
 
 .sign-link{
   font-size: 1vw;
+}
+
+.login-question{
+  display: flex;
+  justify-content: center;
+  font-size: 1vw;
+  margin-top: 2%;
 }

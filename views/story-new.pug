@@ -3,13 +3,13 @@ include utils.pug
 block content
     +validationErrorSummary(errors)
     div(class="form-div")
-        form(action='/story-new' method='post')
+        form(class="story-form" action='/story-new' method='post')
             input(type="hidden" name="_csrf" value=csrfToken)
-            div(class='story-container')
+            div(class='imageurl-container')
                 input(type="url" name='imgUrl', class="story-url" placeholder="Add an optional image here...")
-            div(class='story-container')
+            div(class='title-container')
                 input(type='text' name='title' class="story-title" placeholder="Name Your Story...")
-            div(class='story-container')
+            div(class='text-container')
                 textarea(name='content' class='story-text' placeholder="Tell Us Your Story...")
-            div(class='submit-div')
-                button(class="btn" type="submit") Post Your Story
+            div(class='post-div')
+                button(class="green-btn" type="submit") Post Your Story
