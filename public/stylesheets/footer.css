@@ -7,11 +7,16 @@ footer{
     bottom: 0px;
     background: #52734d;
     border-top: 2px solid black;;
-    padding: 10px;
+    /* padding: 10px; */
 }
 .main-link{
     display: flex;
 }
+
+.main-link-cont{
+    margin-left: 6%; /*added this for centering*/
+}
+
 footer .meet-container{
     display: flex;
     flex-wrap: wrap;
@@ -28,7 +33,8 @@ footer a {
 }
 .big-link{
     padding-bottom: 5px;
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-top: 1%;
 }
 footer h1 {
     font-size: 20px;
