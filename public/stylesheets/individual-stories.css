@@ -64,6 +64,11 @@
     transition: .2s;
     transition-timing-function: cubic-bezier(0, 1.56, 1, 1.03);
 }
+.story-comment,
+#like-button:disabled{
+    opacity: 0.5;
+}
+
 #comment-box{
     position: fixed;
     right: 0;
@@ -90,9 +95,9 @@
 .comment-exit i {
   margin-top: 15px;
   cursor: pointer;
-} 
+}
 .comment-input{
-    width: 90%; 
+    width: 90%;
 }
 .comment-form{
     box-shadow: 0px 0px 20px lightgray;
@@ -148,7 +153,7 @@ textarea{
     grid-area: timestamp;
     color: gray;
     font-size: 10px;
-} 
+}
 .posted-comment-content {
     grid-area: content;
     color: black;

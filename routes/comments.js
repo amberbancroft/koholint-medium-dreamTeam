@@ -10,10 +10,10 @@ router.post("/:storyId", asyncHandler(async (req, res) => {
  //use req.session.auth to get userId
  //if req.session.auth exists, set boolean to true
    //if it DOESNT exist, set boolean to false
-    
-    let authorized = false; 
+
+    let authorized = false;
     if(req.session.auth){
-        
+
         const {content, storyId} = req.body;
         let userId = req.session.auth.userId;
         authorized = true;
@@ -23,22 +23,22 @@ router.post("/:storyId", asyncHandler(async (req, res) => {
         const userCommenting = await db.User.findByPk(userId);
         comment.timestamp = timestampShortener(comment.createdAt);
         res.json({
-            authorized, 
-            content: comment.content, 
-            userName: userCommenting.userName, 
-            createdAt: comment.timestamp, 
+            authorized,
+            content: comment.content,
+            userName: userCommenting.userName,
+            createdAt: comment.timestamp,
             likes: like.likeCount,
             commentId: comment.id
         }); //will need to add a separate eventlistener and api route for this
         return;
-    } 
-    
+    }
+
     console.log(`THIS COMMENT BELONGS TO STORY WITH ID ${req.params.id}`);
     res.json({authorized});
 }));
 
 router.put("/:commentId", asyncHandler(async (req, res) => {
-//Update the comment and send back the updated content for ajax rendering 
+//Update the comment and send back the updated content for ajax rendering
     const commentId = req.params.commentId
     const {content} = req.body;
     const comment = await db.Comment.findByPk(commentId);

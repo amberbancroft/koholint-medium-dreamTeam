@@ -6,8 +6,10 @@ html
         link(rel="stylesheet", href="/stylesheets/index.css")
         link(rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon")
         script(src="https://kit.fontawesome.com/c8dd27a445.js" crossorigin="anonymous")
+        //-add new script to clear localStore whenever we logout, blockLike
+        script(async defer src="/javascripts/layout.js")
   body
-    if authenticated 
+    if authenticated
       div(class="header-nav__container")
         span(id='buttons', class="header-nav__group")
           img(id='nav-image', src="/images/avocado2.png")
@@ -15,11 +17,12 @@ html
           div(id='vl')
             h2= title
         span(id='buttons')
-          button(class='text-only'): a(href='/users/logout') Sign Out
+          //- added id to clear store, blockLike
+          button(class='text-only' id="logout-button"): a(href='/users/logout') Sign Out
           button(class='text-only'): a(href='/story-new') Write
           button(class='landing-button'): a(href=`/users/${user.id}`) My Profile
     else
-      div(class="header-nav__container")  
+      div(class="header-nav__container")
         span(id='buttons', class="header-nav__group")
           img(id='nav-image', src="/images/avocado2.png")
           h1: a(href="/") Avocati
@@ -29,7 +32,7 @@ html
           button(type='submit', class='text-only'): a(href='/users/login') Sign in
           button(class='landing-button'): a(href='/users/signup') Get Started
     block content
-    //- block footer 
+    //- block footer
     //-   footer
     //-     a(href="https://github.com/amberbancroft/koholint-medium-dreamTeam"): div
     //-       h1 Brought to you by Team Koholint

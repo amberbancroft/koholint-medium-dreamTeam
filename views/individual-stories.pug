@@ -6,7 +6,7 @@ block content
         div(id="individual-story-title")
             h1 #{story.title}
         div(id="story-user")
-            p Created By: 
+            p Created By:
               span: a(href=`/users/${user.id}`) #{user.userName}
         if story.imgUrl
             div(id="img-div")
@@ -28,7 +28,7 @@ block content
                   div
                     button(class="green-btn-follow") Respond
             div(class="comment-section comments-display")
-                each comment in story.Comments 
+                each comment in story.Comments
                   div(class="single-comment-box" data-comment-id=comment.id)
                     div(class="single-comment-box__user" data-id=comment.User.id)
                       p= comment.User.userName

@@ -392,6 +392,14 @@ router.get('/:id(\\d+)/following', asyncHandler(async(req, res) => {
   })
 }));
 
+router.get('/authorized', asyncHandler(async(req, res) => {
+  let authorized = false;
+    if(req.session.auth){
+      authorized = true;
+    }
+
+  return res.json({authorized})
+}));
 
 
 //Exports
