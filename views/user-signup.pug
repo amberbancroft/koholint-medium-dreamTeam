@@ -5,26 +5,26 @@ block content
   div(class='center-container')
     div(class="signup-form-container")
 
-      form(class="login-form" action="/users/signup" method="post")
+      form(class="signup-form" action="/users/signup" method="post")
         +validationErrorSummary(errors)
         input(type="hidden" name="_csrf" value=csrfToken)
-        div(class="input-container")
+        div(class="signup-container")
           label(for="userName") Username:
-          input(class="login-input" type="text" name="userName" id="userName" value=userName)
-        div(class="input-container")
+          input(class="signup-input" type="text" name="userName" id="userName" value=userName)
+        div(class="signup-container")
           label(for="email") Email:
-          input(class="login-input" type="email" name="email" id="email" value=email)
-        div(class="input-container")
+          input(class="signup-input" type="email" name="email" id="email" value=email)
+        div(class="signup-container")
           label(for="firstName") First Name:
-          input(class="login-input" type="text" name="firstName" id="firstName" value=firstName)
-        div(class="input-container")
+          input(class="signup-input" type="text" name="firstName" id="firstName" value=firstName)
+        div(class="signup-container")
           label(for="lastName") Last Name:
-          input(class="login-input" type="text" name="lastName" id="lastName" value=lastName)
-        div(class="input-container")
+          input(class="signup-input" type="text" name="lastName" id="lastName" value=lastName)
+        div(class="signup-container")
           label(for="password") Password:
-          input(class="login-input" type="password" name="password" id="password")
-        div(class="input-container")
+          input(class="signup-input" type="password" name="password" id="password")
+        div(class="signup-container")
           label(for="confirmPassword") Confirm Password:
-          input(class="login-input" type="password" name="confirmPassword" id="confirmPassword")
+          input(class="signup-input" type="password" name="confirmPassword" id="confirmPassword")
         div(class="submit-div")
           button(class="btn" type="submit") Submit

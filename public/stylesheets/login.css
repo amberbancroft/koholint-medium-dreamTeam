@@ -23,8 +23,9 @@
   display: flex;
   background-color: #8db596;
   width: 25vw;
-  min-height: 20vh;
+  min-height: 50vh;
   /* height: 50vh; */
+  box-shadow: 5px 5px 10px gray;
   justify-content: center;
   border-radius: 5px;
   border: black solid 2px;
@@ -40,6 +41,16 @@
   min-height: 20vh;
 }
 
+.signup-form {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  min-height: 20vh;
+}
 
 .input-label {
   display: block;
@@ -50,8 +61,19 @@
   width: 70%;
 }
 
+.signup-container {
+  width: 70%;
+}
+
 .login-input {
   height: 30px;
+  width: 100%;
+  border-radius: 5px;
+  margin: 10px 0px;
+}
+
+.signup-input {
+  height: 50%;
   width: 100%;
   border-radius: 5px;
   margin: 10px 0px;
