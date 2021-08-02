@@ -17,7 +17,8 @@
     background-color: green;
     color: white; 
 }
-.green-btn-follow:hover{
+.green-btn-follow:hover,
+#story-btn:hover{
     background-color: black;
     color: white;
     transition: 0.5s;
@@ -29,9 +30,16 @@
 }
 #followers-btn{
     background-color: white;
+    transition: 0.5s;
 }
 #edit-btn{
     background-color: white;
+    transition: 0.5s;
+}
+
+#edit-btn:hover,
+#followers-btn:hover{
+    color: green;
 }
 #date {
     color: rgb(153, 151, 151);

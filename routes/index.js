@@ -102,7 +102,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   //Added 404 page if story does not exist
   if (story === null){
     return res.render('error', {
-      message: "404 BAD URL, Story id does not exist",
+      message: "Story not found",
     })
   }
 
@@ -204,7 +204,7 @@ router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async(req, res) => {
 
   if (validatorErrors.isEmpty()) {
     await storyToUpdate.update(story);
-    res.redirect('/stories');
+    res.redirect(`/${id}`);
   } else {
     const errors = validatorErrors.array().map((error) => error.msg)
     res.render('edit-story', {
@@ -216,13 +216,23 @@ router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async(req, res) => {
 }));
 
 // Delete your story
+// TODO: delete comments associated with story
 router.post('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   const id = req.params.id
+  const comments = await Comment.findAll({
+    where : { storyId: id }
+  });
+
+  for (let comment of comments){
+    comment.destroy();
+  }
+
   const story = await db.Story.findOne({
     where: {id}
   })
+  const userId = story.userId;
   await story.destroy();
-  res.redirect('/stories');
+  res.redirect(`/stories/${userId}`);
 }));
 
 

@@ -172,7 +172,7 @@ router.get(
     //Added 404 page for users profiles that arent found
     if (currentUser === null){
       return res.render('error', {
-        message: "404 BAD URL, User Does Not Exist, Cannot Load Profile"
+        message: "User Does Not Exist, Cannot Load Profile"
       })
     }
 
