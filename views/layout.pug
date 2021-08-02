@@ -18,9 +18,9 @@ html
             h2= title
         span(id='buttons')
           //- added id to clear store, blockLike
-          button(class='text-only' id="logout-button"): a(href='/users/logout') Sign Out
-          button(class='text-only'): a(href='/story-new') Write
-          button(class='landing-button'): a(href=`/users/${user.id}`) My Profile
+          a(href='/users/logout'): button(class='text-only' id="logout-button") Sign Out  
+          a(href='/story-new'): button(class='text-only') Write
+          a(href=`/users/${user.id}`): button(class='landing-button') My Profile
     else
       div(class="header-nav__container")
         span(id='buttons', class="header-nav__group")
@@ -29,8 +29,8 @@ html
           div(id='vl')
             h2= title
         span(id='buttons')
-          button(type='submit', class='text-only'): a(href='/users/login') Sign in
-          button(class='landing-button'): a(href='/users/signup') Get Started
+          a(href='/users/login'): button(type='submit', class='text-only') Sign in
+          a(href='/users/signup'): button(class='landing-button')  Get Started
     block content
     block footer
       footer

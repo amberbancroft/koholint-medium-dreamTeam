@@ -27,8 +27,9 @@
 }
 
 .text-only {
-    font-size: 12px;
+    font-size: 16px;
     color: black;
+    padding: 10px;
     border: none;
     background-color: #52734d;
     outline: none;
