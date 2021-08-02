@@ -204,7 +204,7 @@ router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async(req, res) => {
 
   if (validatorErrors.isEmpty()) {
     await storyToUpdate.update(story);
-    res.redirect('/stories');
+    res.redirect(`/${id}`);
   } else {
     const errors = validatorErrors.array().map((error) => error.msg)
     res.render('edit-story', {

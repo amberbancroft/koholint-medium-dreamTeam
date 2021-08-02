@@ -9,8 +9,13 @@ body {
 button {
   padding: 5px 10px;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 button a {
   text-decoration: none;
+}
+
+i {
+  cursor: pointer;
 }

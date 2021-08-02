@@ -7,7 +7,7 @@ block content
             input(type="hidden" name="_csrf" value=csrfToken)
             div(class='story-container')
                 input(type='text' name='title' class="story-title" value=`${story.title}` placeholder="Name Your Story...")
-            div(class='story-container')
+            div(class='story-container story-edit')
                 textarea(name='content' class='story-text' placeholder="Tell Us Your Story...") #{story.content}
             div(class='submit-div')
                 button(class="btn" type="submit") Post Your Story
