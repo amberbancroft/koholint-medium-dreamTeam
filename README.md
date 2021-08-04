@@ -43,7 +43,7 @@ Avocati is a platform for users to openly express their ideas or share their exp
 ## Application Architecture
 
 ### Database Schema
-    ![Database](/images/DatabaseSchema.png)
+![Database](/images/DatabaseSchema.png)
 
 ### Frontend Overview
 The Avocati frontend was built entirely with vanilla JavaScript and CSS. We used a combination of form inputs and the Fetch API to provide a fully functional CRUD experience to our users. By utilizing Ajax we are also able to provide a seamlessly integrated experience to our users when they make comments, like stories, or follow other users.
