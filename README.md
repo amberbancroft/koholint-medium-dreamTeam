@@ -28,16 +28,25 @@ Avocati is a platform for users to openly express their ideas or share their exp
 ## MVP Feature List
 * User Authentification
     * Sign Up/ Login
+        Users have the ability to sign up for an account by inputing the requested credentials.
         ![Sign Up/Login](/images/AvocatiLoginSignUp.gif)
     * Demo User
+        Upon arriving on the homepage, users have the option to click the "Demo" button to be instantly logged in as the default demo user. This demo account allows them to navigate the application and all of it's authenticated features without formally creating their own account.
         ![Demo User](/images/AvocatiDemoExample.gif)
-* Create Stories
-    ![Create Stories](/images/WriteThings.gif)
+* Stories
+    * Creating Stories
+        Authenticated users can create their own stories, allowing other users to browse their work. To create a story, you will be prompted to input a title, content, and an optional image url.
+        ![Create Stories](/images/WriteThings.gif)
+    * Editing Stories
+    * Deleting Stories
 * Story Comments
+    Authenticated users have the ability to comment on any story they view. Comments created by the user are denoted by their username as well as the time the comment was produced.
     ![Comments](/images/CreatingComments.gif)
 * Liking Stories
+    Authenticated users can like their favorite stories by clicking the heart icon at the end of a story. Similar to [Medium](https://medium.com/), users are allowed to click the like button as many times as they please, and the like counter adjacent to the icon will render the change by incrementing the counter by one on each click.
     ![Likes](/images/LikingStuff.gif)
 * Follow/Unfollowing Users
+    Authenticated users have access to a personal profile which displays the users they follow and that follow them, as well as a link to all of their user stories, and an edit button that allows them to change specific infomation tied to their account that they initally inserted upon account creation.
     ![Following](/images/FollowingUsers.gif)
 
 ## Application Architecture
