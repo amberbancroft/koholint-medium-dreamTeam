@@ -6,6 +6,7 @@
 * [Technologies Used](#technologies-used)
 * [MVP Feature List](#mvp-feature-list)
 * [Application Architecture](#application-architecture)
+* [Database Schema](#database-schema)
 * [Frontend Overview](#frontend-overview)
 * [Backend Overview](#backend-overview)
 * [Conclusion](#conclusion)
@@ -25,14 +26,24 @@ Avocati is a platform for users to openly express their ideas or share their exp
     * Heroku Deployment
 
 ## MVP Feature List
-* Create users and sign in/out
-     * Customize user profile page
-* Create stories
-* Make comments on stories
-* Like stories
-* Follow and unfollow other users
+* User Authentification
+    * Sign Up/ Login
+        ![Sign Up/Login](/images/AvocatiLoginSignUp.gif)
+    * Demo User
+        ![Demo User](/images/AvocatiDemoExample.gif)
+* Create Stories
+    ![Create Stories](/images/WriteThings.gif)
+* Story Comments
+    ![Comments](/images/CreatingComments.gif)
+* Liking Stories
+    ![Likes](/images/LikingStuff.gif)
+* Follow/Unfollowing Users
+    ![Following](/images/FollowingUsers.gif)
 
 ## Application Architecture
+
+### Database Schema
+    ![Database](/images/DatabaseSchema.png)
 
 ### Frontend Overview
 The Avocati frontend was built entirely with vanilla JavaScript and CSS. We used a combination of form inputs and the Fetch API to provide a fully functional CRUD experience to our users. By utilizing Ajax we are also able to provide a seamlessly integrated experience to our users when they make comments, like stories, or follow other users.
@@ -42,4 +53,4 @@ The Express backend is a collection of frontend routes and RESTful API routes th
 
 ## Conclusion
 We intended to create a clone of Medium which is a site where you can post articles and engage in the community like many other social media platforms. We strived for a clean minimal look with high functionality. We learned a lot on the process and look forward to improving our design in the future.
-  
+
