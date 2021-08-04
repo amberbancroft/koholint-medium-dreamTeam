@@ -11,7 +11,7 @@ saveButton.addEventListener('click', async (e) => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({bio: bio.value, imgUrl: image.value})
     });
-    const json = await res.json(); 
+    const json = await res.json();
 
     window.location.href = `/users/${json.userId}`;
 });

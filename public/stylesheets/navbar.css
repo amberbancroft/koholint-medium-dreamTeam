@@ -27,11 +27,17 @@
 }
 
 .text-only {
-    font-size: 12px;
+    font-size: 16px;
     color: black;
+    padding: 10px;
     border: none;
     background-color: #52734d;
     outline: none;
+    transition: 0.5s;
+}
+
+.text-only:hover{
+    color: white;
 }
 
 .landing-button {
@@ -52,9 +58,12 @@ span#buttons{
     font-size: 35px;
     text-decoration: none;
     font-weight: bold;
+    transition: 0.3s;
     /* margin-left: 5px; */
 }
-
+#buttons > h1 > a:hover{
+    color: white;
+}
 #vl > h2 {
     margin-top: 12px;
     margin-left: 10px;

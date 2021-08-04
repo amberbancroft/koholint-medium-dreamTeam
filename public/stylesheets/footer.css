@@ -1,29 +1,54 @@
 footer{
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     bottom: 0px;
     background: #52734d;
     border-top: 2px solid black;;
-    padding: 10px;
+    /* padding: 10px; */
 }
-
-footer div{
+.main-link{
     display: flex;
 }
-footer div:hover{
+
+.main-link-cont{
+    margin-left: 6%; /*added this for centering*/
+}
+
+footer .meet-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex: 1;
+}
+.main-link:hover{
     opacity: 50%;
 }
 
 footer a {
     text-decoration: none;
+    align-self: center;
 }
-footer i {
+.big-link{
     padding-bottom: 5px;
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-top: 1%;
 }
 footer h1 {
-    margin-top: 5px;
+    font-size: 20px;
+    align-self: center;
+}
+.meet-container h1{
+    margin-right: 10px;
+}
+.meet-container p {
+    align-self: center;
+}
+.meet-container i {
+    margin: 2px;
+}
+.meet-container p {
+    margin: 3px;
 }

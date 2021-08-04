@@ -6,8 +6,10 @@ html
         link(rel="stylesheet", href="/stylesheets/index.css")
         link(rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon")
         script(src="https://kit.fontawesome.com/c8dd27a445.js" crossorigin="anonymous")
+        //-add new script to clear localStore whenever we logout, blockLike
+        script(async defer src="/javascripts/layout.js")
   body
-    if authenticated 
+    if authenticated
       div(class="header-nav__container")
         span(id='buttons', class="header-nav__group")
           img(id='nav-image', src="/images/avocado2.png")
@@ -15,22 +17,28 @@ html
           div(id='vl')
             h2= title
         span(id='buttons')
-          button(class='text-only'): a(href='/users/logout') Sign Out
-          button(class='text-only'): a(href='/story-new') Write
-          button(class='landing-button'): a(href=`/users/${user.id}`) My Profile
+          //- added id to clear store, blockLike
+          a(href='/users/logout'): button(class='text-only' id="logout-button") Sign Out  
+          a(href='/story-new'): button(class='text-only') Write
+          a(href=`/users/${user.id}`): button(class='landing-button') My Profile
     else
-      div(class="header-nav__container")  
+      div(class="header-nav__container")
         span(id='buttons', class="header-nav__group")
           img(id='nav-image', src="/images/avocado2.png")
           h1: a(href="/") Avocati
           div(id='vl')
             h2= title
         span(id='buttons')
-          button(type='submit', class='text-only'): a(href='/users/login') Sign in
-          button(class='landing-button'): a(href='/users/signup') Get Started
+          a(href='/users/login'): button(type='submit', class='text-only') Sign in
+          a(href='/users/signup'): button(class='landing-button')  Get Started
     block content
-    //- block footer 
-    //-   footer
-    //-     a(href="https://github.com/amberbancroft/koholint-medium-dreamTeam"): div
-    //-       h1 Brought to you by Team Koholint
-    //-       i(class="fab fa-github-square fa-3x")
+    block footer
+      footer
+        a( class="main-link-cont" href="https://github.com/amberbancroft/koholint-medium-dreamTeam"): div(class="main-link")
+          h1 Brought to you by Team Koholint
+          i(class="fab fa-github-square fa-2x big-link")
+        div(class="meet-container")
+          p <a href="https://github.com/Sirpeter89">Justin Wong <i class="fab fa-github-square fa-lg"></i></a><a href="https://www.linkedin.com/in/justin-wong-29a247217/"><i class="fab fa-linkedin fa-lg"></i></a>
+          p <a href="https://github.com/owenbeckles">Owen Beckles<i class="fab fa-github-square fa-lg"></i></a><a href="https://www.linkedin.com/in/becklesowen/"><i class="fab fa-linkedin fa-lg"></i></a>
+          p <a href="https://github.com/r-w-chen">Becky Chen<i class="fab fa-github-square fa-lg"></i></a><a href="https://www.linkedin.com/in/rwchen/"><i class="fab fa-linkedin fa-lg"></i></a>
+          p <a href="https://github.com/amberbancroft">Amber Bancroft<i class="fab fa-github-square fa-lg"></i></a><a href="https://www.linkedin.com/in/amber-bancroft/"><i class="fab fa-linkedin fa-lg"></i></a>

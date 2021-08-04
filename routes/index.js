@@ -13,7 +13,7 @@ const getTenStories = async () => {
   while (randomSelection.length !== allStories.length){
     if(randomSelection.length === 10) break;
     let randomNum = Math.floor(Math.random() * allStories.length);
-    if(randomSelection.includes(randomNum)) continue; 
+    if(randomSelection.includes(randomNum)) continue;
     randomSelection.push(randomNum);
   }
   for(let num of randomSelection){
@@ -98,6 +98,14 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
 
       {where: {id} , include: {model: Comment, include: [User, Like]}}
   );
+
+  //Added 404 page if story does not exist
+  if (story === null){
+    return res.render('error', {
+      message: "Story not found",
+    })
+  }
+
   if (req.session.auth){
     loggedInUserId = req.session.auth.userId
     if (loggedInUserId === story.userId){
@@ -108,11 +116,11 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   //Adds a property 'timestamp' to each comment object which contains shortened date as string
   story.Comments.forEach(comment => {
     comment.timestamp = timestampShortener(comment.createdAt.toString());
-    console.log("EEEDDIDIIITTTED COMMMMENT", comment.timestamp);
   });
 
   const user = await db.User.findOne( {where: story.userId});
   const likes = await db.Like.findByPk(story.likesId);
+
     res.render('individual-stories', {
       csrfToken: req.csrfToken(),
       story,
@@ -134,7 +142,6 @@ router.patch('/:id(\\d+)', asyncHandler(async(req, res) => {
   const likes = await db.Like.findByPk(story.likesId);
   let likeCount = likes.likeCount;
   likeCount+=1;
-  console.log("THIIIIIIIIS", likeCount)
   await likes.update({
     likeCount,
   })
@@ -197,7 +204,7 @@ router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async(req, res) => {
 
   if (validatorErrors.isEmpty()) {
     await storyToUpdate.update(story);
-    res.redirect('/stories');
+    res.redirect(`/${id}`);
   } else {
     const errors = validatorErrors.array().map((error) => error.msg)
     res.render('edit-story', {
@@ -209,13 +216,23 @@ router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async(req, res) => {
 }));
 
 // Delete your story
+// TODO: delete comments associated with story
 router.post('/:id(\\d+)', csrfProtection, asyncHandler(async(req, res) => {
   const id = req.params.id
+  const comments = await Comment.findAll({
+    where : { storyId: id }
+  });
+
+  for (let comment of comments){
+    comment.destroy();
+  }
+
   const story = await db.Story.findOne({
     where: {id}
   })
+  const userId = story.userId;
   await story.destroy();
-  res.redirect('/stories');
+  res.redirect(`/stories/${userId}`);
 }));
 
 

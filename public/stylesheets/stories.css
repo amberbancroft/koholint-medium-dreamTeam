@@ -7,9 +7,9 @@
     grid-template-columns: repeat(5, 1fr);
 }
 #story-header{
-    font-family: cursive;
     text-align: center;
-    text-decoration: underline;
+    font-size: 50px;
+    /* text-decoration: underline; */
 }
 .items{
     padding: 10px;
