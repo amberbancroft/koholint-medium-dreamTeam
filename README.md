@@ -12,7 +12,7 @@
 * [Conclusion](#conclusion)
 
 ## Welcome to Avocati
-Avocati is a platform for users to openly express their ideas or share their experiences with a general audience and a vast amount of categories. On our full-stack application, users can post their own articles and publish them so that any other Avocati user can read or follow the publisher to stay updated with the favorite authors.
+Avocati (a [Medium](https://medium.com/) clone) is a platform for users to openly express their ideas or share their experiences with a general audience and a vast amount of categories. On our full-stack application, users can post their own articles and publish them so that any other Avocati user can read or follow the publisher to stay updated with the favorite authors.
 
 ## Technologies Used
 * Frontend
