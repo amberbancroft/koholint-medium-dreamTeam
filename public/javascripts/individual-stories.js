@@ -12,9 +12,9 @@ const addEditDeleteListener = (editButton, deleteButton, commentId) => {
     let saveOpen = false;
     /*When edit is clicked, render a textbox and save button*/
     editButton.addEventListener('click', async e => {
-        //to hide menu after clicking 
+        //to hide menu after clicking
         e.target.parentNode.classList.add("hidden");
-        
+
         if(!saveOpen){
             //create elements
             const textbox = commentBox.childNodes[4];
@@ -41,27 +41,26 @@ const addEditDeleteListener = (editButton, deleteButton, commentId) => {
                 editBox.parentNode.removeChild(editBox);
             })
 
-            //combine elements and append to comment box 
+            //combine elements and append to comment box
             editBox.append(editTextarea, saveBtn);
             commentBox.append(editBox);
 
         }
-        
 
-  
 
-        
+
+
+
     });
 
     deleteButton.addEventListener('click', async e => {
-        console.log("BEFORE DELETE, DELETING COMMENT", commentId);
         commentBox.parentNode.removeChild(commentBox);
         //actually delete it in the database now
         await fetch(`/comments/${commentId}`,{
             method: "DELETE",
         });
         console.log("AFTER DELETE");
-    
+
     });
 }
 const addMenuEventListener = (menuButton) => {
@@ -71,7 +70,7 @@ const addMenuEventListener = (menuButton) => {
         const menu = e.target.parentElement.childNodes[2];
         menu.classList.toggle("hidden");
     })
-}   
+}
 const renderComment = (userName, createdAt, content, likes, commentId) => {
     const newComment = document.createElement("div");
     const newCommentUserContainer = document.createElement("div");
@@ -101,9 +100,9 @@ const renderComment = (userName, createdAt, content, likes, commentId) => {
     newCommentUserContainer.append(newCommentUser);
     newComment.append(newCommentUserContainer, newCommentTimestamp, newCommentMenu, newCommentMenuButton, newCommentContent);
     commentsDisplay.append(newComment);
-    
+
     addMenuEventListener(newCommentMenuButton);
-    addEditDeleteListener(newCommentEdit, newCommentDelete, commentId); 
+    addEditDeleteListener(newCommentEdit, newCommentDelete, commentId);
 }
 
 //**************To Add Event Listeners to page UPON LOADING******************/
@@ -157,24 +156,40 @@ deleteAndEditMenus.forEach(menu => {
 })
 
 const like = document.querySelector('#like-button');
-like.addEventListener('click', (e) => {
-    e.target.classList.add("fa-lg");
-    setTimeout(()=> {
-    e.target.classList.remove("fa-lg");
-    }, 100)
-    fetch(`/${like.dataset.value}`, {
-        method: "PATCH",
-    }).then(function(res) {
-        if (!res.ok) {
-            throw Error(res.statusText);
+like.addEventListener('click', async (e) => {
+    try {
+            const res = await (await fetch('users/authorized')).json();
+            if(res.authorized){
+            //not allowing users to like more than once, but only on local session
+            //would need to add new attribute to db to truly fix this
+            if(!localStorage.getItem(`${like.dataset.value}`)){ //blockLike
+
+                e.target.classList.add("fa-lg");
+                setTimeout(()=> {
+                e.target.classList.remove("fa-lg");
+                }, 100)
+
+                fetch(`/${like.dataset.value}`, {
+                    method: "PATCH",
+                }).then(function(res) {
+                    if (!res.ok) {
+                        throw Error(res.statusText);
+                    }
+                    return res.json();
+                })
+                .then(function(like){
+                    const likeCounter = document.querySelector(".story-likes");
+                    likeCounter.innerHTML = like.likeCount;
+                })
+                .catch((error)=>{
+                    console.error(error)
+                })
+                localStorage.setItem(`${like.dataset.value}`, 'true') //blockLike
+            }
+        } else {
+            alert("You must be signed in to like stories")
         }
-        return res.json();
-    })
-    .then(function(like){
-        const likeCounter = document.querySelector(".story-likes");
-        likeCounter.innerHTML = like.likeCount;
-    })
-    .catch((error)=>{
-        console.error(error)
-    })
+    } catch (e) {
+        console.error(e);
+    }
 })

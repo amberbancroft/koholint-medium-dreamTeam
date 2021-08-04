@@ -1,29 +1,73 @@
 .form-div {
   display: flex;
-  margin-top: 100px;
+  margin-top: 3%;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
+  height: 80vh;
+
 }
 
 .story-container {
-  width: 80vw;
+  width: 60vw;
+}
+
+.story-edit{
+  height: 85%;
+}
+
+.story-form{
+  display: grid;
+  grid-template-areas:
+  "image"
+  "title"
+  "story"
+  "post";
+  grid-template-rows: 5% 15% 76% 4%;
+  /* border: 2px dotted rgb(64, 126, 3); */
+  height: 100%;
+  box-shadow: 5px 5px 10px gray;
+  width: 60%;
 }
 
 .story-text {
-  font-size: 15px;
-  margin-top: 30px;
+  font-size: 16px;
   width: 100%;
+  height: 97%;
   /* position: relative; */
   border: none;
   outline: none;
   resize: none;
-  height: 500px;
+  /* background-color: #feffde; */
+}
+
+.post-div{
+  grid-area: post;
+  display: flex;
+  justify-content:flex-end;
+  align-items: flex-end;
+  padding-bottom: 1%;
+  padding-right: 1%;
+}
+
+.text-container{
+  grid-area: story;
   /* background-color: #feffde; */
 }
 
 .story-title {
+  width: 100%;
+  grid-area: title;
   font-size: 24px;
   border: none;
-  /* background-color: #feffde; */
+  border-bottom: 2px solid black;
+
   outline: none;
+}
+
+.imageurl-container{
+  grid-area: image;
+}
+
+.story-url{
+  width: 100%;
 }

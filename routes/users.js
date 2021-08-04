@@ -169,6 +169,14 @@ router.get(
     let boolean = false;
     let loggedIn = false;
 
+    //Added 404 page for users profiles that arent found
+    if (currentUser === null){
+      return res.render('error', {
+        message: "User Does Not Exist, Cannot Load Profile"
+      })
+    }
+
+
     //if defined
     if(req.session.auth) {
       boolean = userId === req.session.auth.userId;
@@ -235,7 +243,7 @@ router.get(
     if(req.session.auth) {
       boolean = userId === req.session.auth.userId;
     }
-console.log("AM I FOLLOWING THIS PERSON???", currentUser.following);
+
     res.render("user-profile-page-edit", {
       title: "Edit Profile Page",
       currentUser,
@@ -378,13 +386,21 @@ router.get('/:id(\\d+)/following', asyncHandler(async(req, res) => {
   });
 
   countOfUsersFollowing = following.length;
-  console.log('Count', countOfUsersFollowing);
-  console.log('following********', following)
 
   res.render('followed', {
     following
   })
 }));
+
+router.get('/authorized', asyncHandler(async(req, res) => {
+  let authorized = false;
+    if(req.session.auth){
+      authorized = true;
+    }
+
+  return res.json({authorized})
+}));
+
 
 //Exports
 module.exports = router;

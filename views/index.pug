@@ -20,14 +20,14 @@ block content
           p Start sharing your passions 
             span: a(href="/story-new") here
         div(class="landing-header-img-div")
-        button(class='landing-button'): a(href=`/users/${user.id}`) My Profile
+        a(href=`/users/${user.id}`): button(class='landing-button') My Profile
       else 
         div(class="landing-header-text-box")
           h1(class="landing-header-text") Where good ideas find you
           p Read and share new perspectives on just about any to hobby. Everyone's welcome.
         div(class="landing-header-img-div")
-        button(class="landing-button"): a(href="/users/signup") Get Started
-        button(class="landing-button demo"): a(href="/users/demo") Demo
+        a(href="/users/signup"): button(class="landing-button") Get Started
+        a(href="/users/demo"): button(class="landing-button demo") Demo
   section(class="trending")
     h2(class="trending-text") Trending on Avocati
     div(class="landing-top-stories")
@@ -46,7 +46,10 @@ block content
             a(href=`/${story.id}` class="landing-other-story-title")= story.title
             p(class="landing-other-story-timestamp")= story.timestamp
           div(class="landing-other-story-imgbox")
-            img(class="other-story-img" src=story.imgUrl, alt="story-photo.png")
+            if(story.imgUrl)
+              img(class="other-story-img" src=story.imgUrl, alt="story-photo.png")
+            else
+              div(class="landing-other-story-placeholderimg")
     div(class="other-follow")
         div(class="other-follow-text")
           h3 Follow your favorite writers

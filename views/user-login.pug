@@ -1,13 +1,14 @@
 extends layout
 
 include utils.pug
+append head
 
 block content
+    div(class="login-title") Welcome back!
     div(class='center-container')
         div(class="form-container")
-            +validationErrorSummary(errors)
             form(class="login-form" action='/users/login' method='post')
-                h2 Welcome back!
+                +validationErrorSummary(errors)
                 input(type="hidden" name="_csrf" value=csrfToken)
 
                 div(class='input-container')
@@ -19,9 +20,8 @@ block content
                     input(class="login-input" type='password' name='password' id='password')
 
                 div(class="submit-div-login")
-                    button(class="btn" type="submit") Login
-                    hr
-                p Dont have an account?  
-                    span: a(href="/users/signup") Sign up
-
-            
+                    button(class="landing-button" type="submit") Login
+                    button(class="landing-button demo sign-in-demo") Demo
+                    
+    p(class="signup-question") Dont have an account?
+        a( class="sign-link" href="/users/signup") Sign up

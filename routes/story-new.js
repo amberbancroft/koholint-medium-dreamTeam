@@ -61,7 +61,7 @@ router.post('/', csrfProtection, storyValidator, asyncHandler(async(req,res) => 
 
     if (validatorErrors.isEmpty()) {
         await newStory.save();
-        res.redirect('/stories')
+        res.redirect(`/stories/${userId}`)
     } else {
         const errors = validatorErrors.array().map((error) => error.msg);
         res.render("story-new", {
