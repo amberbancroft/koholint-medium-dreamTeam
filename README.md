@@ -1,4 +1,6 @@
 # Avocati
+![Avocati](/images/AvocatiLink.png)
+
 *By Amber Bancroft, Becky Chen, Justin Wong, and Owen Beckles - [Visit Avocati](https://avocati.herokuapp.com/)*
 
 **Table of Contents**
