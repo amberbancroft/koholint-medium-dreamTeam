@@ -46,7 +46,15 @@ Avocati (a [Medium](https://medium.com/) clone) is a platform for users to openl
         
         ![Create Stories](/images/WriteThings.gif)
     * Editing Stories
+    
+      Authenticated users can edit the stories that they've created.
+      
+      ![EditStory](/images/AvocatiEdit.gif)
     * Deleting Stories
+
+      Authenticated users can edit the stories that they've created.
+      
+      ![DeleteStory](/images/AvocatiDelete.gif)
 * Story Comments
     
     Authenticated users have the ability to comment on any story they view. Comments created by the user are denoted by their username as well as the time the comment was produced.
