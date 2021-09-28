@@ -52,7 +52,7 @@ Avocati (a [Medium](https://medium.com/) clone) is a platform for users to openl
       ![EditStory](/images/AvocatiEdit.gif)
     * Deleting Stories
 
-      Authenticated users can edit the stories that they've created.
+      Authenticated users can delete the stories that they've created.
       
       ![DeleteStory](/images/AvocatiDelete.gif)
 * Story Comments
