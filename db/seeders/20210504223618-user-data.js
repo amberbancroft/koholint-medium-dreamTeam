@@ -1,8 +1,14 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert("Users", [
+    options.tableName = 'Users'; 
+    return queryInterface.bulkInsert(options, [
       {email: "abc@123.com", imgUrl:"https://i.pinimg.com/236x/b0/77/43/b0774303d8104e60628ba1278ab937b5.jpg", firstName: "Bob", lastName: "Ross", userName: "TheBobRoss", hashedPassword: "password"},
       {email: "abcd@123.com", imgUrl:"https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", firstName: "Gary", lastName: "Li", userName: "GLiEasy", hashedPassword: "password"},
       {email: "abcde@123.com", imgUrl:"https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", firstName: "Linda", lastName: "May", userName: "MayL", hashedPassword: "password"},
@@ -12,6 +18,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("Users", null, {});
+    options.tableName = 'Users'; 
+    return queryInterface.bulkDelete(options, null, {});
   }
 };
