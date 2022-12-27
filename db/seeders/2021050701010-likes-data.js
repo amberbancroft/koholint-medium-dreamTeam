@@ -1,8 +1,14 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert("Likes", [
+    options.tableName = 'Likes';
+    return queryInterface.bulkInsert(options, [
       {likeCount: 0},
       {likeCount: 0},
       {likeCount: 0},
@@ -17,6 +23,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("Likes", null, {});
+    options.tableName = 'Likes';
+    return queryInterface.bulkDelete(options, null, {});
   }
 };
