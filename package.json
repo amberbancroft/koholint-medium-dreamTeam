@@ -25,7 +25,10 @@
     "sequelize": "^5.22.3",
     "sequelize-cli": "^5.5.1",
     "serve-favicon": "^2.5.0",
-    "uuid": "^3.4.0"
+    "uuid": "^3.4.0",
+    "dotenv": "^8.2.0",
+    "dotenv-cli": "^4.0.0",
+    "nodemon": "^2.0.6"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
